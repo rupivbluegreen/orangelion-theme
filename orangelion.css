@@ -255,3 +255,11 @@ button.primary:disabled,
     box-shadow: none !important;
     cursor: not-allowed !important;
 }
+
+/* Native form controls (checkboxes, radios, range) adopt the brand accent
+   instead of the browser default blue. */
+input[type=checkbox],
+input[type=radio],
+input[type=range] {
+    accent-color: var(--brand-orange) !important;
+}

@@ -50,6 +50,8 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 - No web-app rebuild and no source changes to Guacamole.
 - Configurable through CSS variables at the top of the stylesheet.
 - Optional product-name rename on the login page via a translation override.
+- Custom browser-tab favicon and app icon (an orange lion mark).
+- Accessible by default: WCAG AA text contrast, a visible keyboard focus ring, and brand-coloured form controls.
 
 ## Install
 

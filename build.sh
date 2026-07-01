@@ -12,7 +12,8 @@ mkdir -p "$here/dist"
 python3 - "$here" "$jar" <<'PY'
 import sys, zipfile, os
 src, jar = sys.argv[1], sys.argv[2]
-files = ["guac-manifest.json", "orangelion.css"]
+files = ["guac-manifest.json", "orangelion.css",
+         "images/lion-64.png", "images/lion-144.png"]
 # Include an optional translation override only if the real file exists
 if os.path.exists(os.path.join(src, "translations", "en.json")):
     files.append("translations/en.json")

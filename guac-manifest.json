@@ -4,5 +4,7 @@
     "namespace": "orangelion",
     "css": [
         "orangelion.css"
-    ]
+    ],
+    "smallIcon": "images/lion-64.png",
+    "largeIcon": "images/lion-144.png"
 }

@@ -7,7 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet. Planned changes will be listed here before the next release.
+### Added
+
+- Custom browser-tab favicon and app icon: an orange lion mark, set through the manifest `smallIcon` and `largeIcon` fields (`images/lion-64.png`, `images/lion-144.png`).
+- Brand accent colour on native form controls (checkboxes, radio buttons, range inputs) via `accent-color`, replacing the browser default blue.
+- Visible keyboard focus ring on interactive elements (WCAG 2.4.7), branded visited links, and disabled-button styling.
+
+### Changed
+
+- Text-sized orange now uses the darker `#C24E00` for links and outline-button labels, meeting WCAG AA contrast on white. The brighter `#FF6200` is retained for fills, borders, and the wordmark.
 
 ## [1.0.0] - 2026-07-01
 
