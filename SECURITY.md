@@ -13,13 +13,15 @@ server-side data, and it does not add any network behavior.
 
 ## Supported versions
 
-Security fixes are provided for the latest released version only. Older releases do not
-receive backported fixes.
+Security fixes are provided for the latest released version only. The current supported
+line is 1.0.x, which receives fixes. Older releases and unreleased or pre-release builds
+do not receive backported fixes.
 
-| Version        | Supported          |
-| -------------- | ------------------ |
-| Latest release | Yes                |
-| Older releases | No                 |
+| Version            | Supported          |
+| ------------------ | ------------------ |
+| 1.0.x              | Yes                |
+| Older than 1.0.x   | No                 |
+| Unreleased / pre-release | No           |
 
 ## Reporting a vulnerability
 
@@ -33,8 +35,10 @@ reporting:
 Please do not open a public issue for sensitive reports, as this can expose the problem
 before a fix is available. Public issues are fine for general, non-sensitive questions.
 
-If you prefer email, the maintainer can add a contact address here. Until then, please use
-the private reporting flow above or contact the repository maintainers via GitHub.
+GitHub's private vulnerability reporting (the repository **Security** tab, **Report a
+vulnerability**) is the sole channel for reporting security issues. There is no separate
+email or other intake. Do not open a public issue for sensitive reports; use the private
+reporting flow above so the problem is not exposed before a fix is available.
 
 ## Response expectations
 

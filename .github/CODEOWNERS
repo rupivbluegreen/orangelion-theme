@@ -1,0 +1,13 @@
+# CODEOWNERS for OrangeLion
+# These owners are auto-requested for review when matching paths change.
+# The last matching pattern takes precedence.
+
+# Default owner for everything in the repository
+* @rupivbluegreen
+
+# Load-bearing paths
+/orangelion.css      @rupivbluegreen
+/build.sh            @rupivbluegreen
+/guac-manifest.json  @rupivbluegreen
+/translations/       @rupivbluegreen
+/.github/            @rupivbluegreen

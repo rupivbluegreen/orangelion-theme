@@ -7,46 +7,94 @@ on:
   pull_request:
     branches: [main]
 
+# Least privilege by default; the release job elevates its own permissions.
 permissions:
-  contents: write
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ !startsWith(github.ref, 'refs/tags/') }}
 
 jobs:
-  build:
+  lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+      - name: Lint workflows
+        uses: raven-actions/actionlint@3d39aea434753780c3b3d4a1a31c854b4dbf49d7 # v2
+      - name: Lint CSS
+        run: |
+          npm install --no-save stylelint@16 stylelint-config-recommended@14
+          npx stylelint "orangelion.css"
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        guac: ["1.5.5", "1.6.0"]
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
 
       - name: Build extension jar
         run: ./build.sh
 
-      - name: Smoke test that the extension loads in Guacamole
+      - name: Smoke test that the extension loads
+        env:
+          GUAC_TAG: ${{ matrix.guac }}
         run: |
           mkdir -p gh/extensions
           cp dist/guacamole-theme-orangelion.jar gh/extensions/
           docker run -d --name guac \
             -e GUACD_HOSTNAME=localhost -e GUACAMOLE_HOME=/gh \
-            -v "$PWD/gh:/gh:ro" guacamole/guacamole:1.6.0
-          for i in $(seq 1 60); do
+            -v "$PWD/gh:/gh:ro" "guacamole/guacamole:${GUAC_TAG}"
+          for i in $(seq 1 90); do
             docker logs guac 2>&1 | grep -q "Server startup in" && break
             sleep 2
           done
           if docker logs guac 2>&1 | grep -q 'Extension "OrangeLion Theme" (orangelion) loaded'; then
-            echo "OrangeLion theme loaded successfully"
+            echo "OrangeLion theme loaded on Guacamole ${GUAC_TAG}"
           else
-            echo "OrangeLion theme did not load"
+            echo "OrangeLion theme did not load on Guacamole ${GUAC_TAG}"
             docker logs guac
             exit 1
           fi
 
       - name: Upload jar as a build artifact
-        uses: actions/upload-artifact@v4
+        if: matrix.guac == '1.6.0'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
           name: guacamole-theme-orangelion
           path: dist/guacamole-theme-orangelion.jar
 
-      - name: Attach jar to the GitHub Release (on version tags)
-        if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+    steps:
+      - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Build extension jar
+        run: ./build.sh
+
+      - name: Generate SHA-256 checksum
+        working-directory: dist
+        run: sha256sum guacamole-theme-orangelion.jar > guacamole-theme-orangelion.jar.sha256
+
+      - name: Attest build provenance
+        uses: actions/attest-build-provenance@ef244123eb79f2f7a7e75d99086184180e6d0018 # v1
         with:
-          files: dist/guacamole-theme-orangelion.jar
+          subject-path: dist/guacamole-theme-orangelion.jar
+
+      - name: Attach jar and checksum to the Release
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2
+        with:
+          files: |
+            dist/guacamole-theme-orangelion.jar
+            dist/guacamole-theme-orangelion.jar.sha256
           generate_release_notes: true

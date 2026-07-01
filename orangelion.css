@@ -26,10 +26,12 @@ body {
     color: var(--brand-charcoal) !important;
 }
 
+a,
 a:link,
+a:visited,
 a:hover,
 a:active {
-    color: var(--brand-orange) !important;
+    color: var(--brand-orange-darker) !important;
 }
 
 /* --------------------------------------------------------------- Login ---- */
@@ -123,7 +125,7 @@ button.primary:hover,
 .button,
 button {
     background: var(--brand-white) !important;
-    color: var(--brand-orange) !important;
+    color: var(--brand-orange-darker) !important;
     border: 2px solid var(--brand-orange) !important;
     text-shadow: none !important;
     box-shadow: none !important;
@@ -211,4 +213,45 @@ a.home-connection:hover,
 /* Notifications / dialogs accent. */
 .notification {
     border-top: 4px solid var(--brand-orange) !important;
+}
+
+/* ----------------------------------------------------- Accessibility ----- */
+
+/* Hide any future logo image so the text wordmark stays the login mark. */
+.login-ui .login-dialog .logo img {
+    display: none !important;
+}
+
+/* Visible keyboard focus ring on interactive elements (WCAG 2.4.7). */
+a:focus-visible,
+input:focus-visible,
+button:focus-visible,
+.button:focus-visible,
+.connection:focus-visible,
+a.home-connection:focus-visible {
+    outline: 3px solid var(--brand-orange-darker) !important;
+    outline-offset: 2px !important;
+}
+
+/* On the orange menu bar, use a white focus ring for contrast. */
+.menu button:focus-visible,
+.menu .button:focus-visible,
+#guac-menu button:focus-visible,
+#guac-menu .button:focus-visible {
+    outline: 3px solid var(--brand-white) !important;
+    outline-offset: 2px !important;
+}
+
+/* Disabled buttons: muted and clearly non-interactive. */
+input[type=submit]:disabled,
+button:disabled,
+button.primary:disabled,
+.button:disabled,
+.button.primary:disabled {
+    background: #F2B48A !important;
+    background-color: #F2B48A !important;
+    border-color: #E0A070 !important;
+    color: var(--brand-white) !important;
+    box-shadow: none !important;
+    cursor: not-allowed !important;
 }
