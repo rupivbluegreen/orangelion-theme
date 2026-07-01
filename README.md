@@ -1,11 +1,17 @@
-# 🦁 OrangeLion
+<div align="center">
 
-A drop-in Apache Guacamole theme that restyles the web interface into the orange palette.
+<h1>🦁</h1>
+
+<h1>OrangeLion</h1>
+
+**A drop-in orange theme for Apache Guacamole**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Guacamole](https://img.shields.io/badge/Guacamole-1.5.x%20%7C%201.6.x-blue.svg)](https://guacamole.apache.org/)
 [![extension](https://img.shields.io/badge/extension-CSS%20theme-orange.svg)](guac-manifest.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+
+</div>
 
 OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the orange colour scheme, using a plain "OrangeLion" text wordmark instead of any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is unofficial and community-maintained.
 
