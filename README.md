@@ -1,63 +1,63 @@
-# OrangeLion, an ING flavored theme for Apache Guacamole
+# 🦁 OrangeLion
 
-A drop in [Apache Guacamole](https://guacamole.apache.org/) theme in the ING
-color palette. It uses bold ING Orange (`#FF6200`), a clean white login card, an
-"ING" wordmark, and orange menu and header bars. It ships as a standard
-Guacamole CSS extension (a `.jar`), so it layers on top of any Guacamole install
-without rebuilding the web app.
+A drop-in Apache Guacamole theme that restyles the web interface into the ING orange palette.
 
-![OrangeLion login screen](screenshot.png)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Guacamole](https://img.shields.io/badge/Guacamole-1.5.x%20%7C%201.6.x-blue.svg)](https://guacamole.apache.org/)
+[![extension](https://img.shields.io/badge/extension-CSS%20theme-orange.svg)](guac-manifest.json)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-> Unofficial and not affiliated with or endorsed by ING. This is a community
-> color theme. It ships no ING logo. The login mark is a plain "ING" text
-> wordmark that you can change in one line (see Customize).
+OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the ING orange colour scheme, using a plain "ING" text wordmark instead of any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is unofficial and is not affiliated with, endorsed by, or sponsored by ING.
 
-## Install and use
+## Screenshots
 
-Full step by step instructions are in [INSTRUCTIONS.md](INSTRUCTIONS.md).
+| Login | Connections |
+| --- | --- |
+| ![Login page: orange background, white card, ING wordmark](screenshots/login.png) | ![Connection list with orange header bars](screenshots/connections.png) |
 
-The short version: copy `dist/orangelion.jar` into your Guacamole
-`GUACAMOLE_HOME/extensions/` directory, restart Guacamole, and hard refresh the
-browser. For the official Docker image, mount a folder that contains
-`extensions/orangelion.jar` and set the `GUACAMOLE_HOME` environment variable to
-that folder.
+| Admin: Users | Admin: Groups |
+| --- | --- |
+| ![Admin Settings, Users page, fully themed](screenshots/users.png) | ![Admin Settings, Groups page, fully themed](screenshots/groups.png) |
 
-## What is in the box
+## Features
 
-| File | Purpose |
-|------|---------|
-| `guac-manifest.json` | Guacamole extension manifest (namespace `orangelion`, declares the CSS) |
-| `orangelion.css` | The theme: palette variables plus login, buttons, menu, and connection list styling |
-| `translations/en.json.example` | Optional rename of the product on the login page (`APP.NAME`) |
-| `build.sh` | Packs the files into `dist/orangelion.jar` |
-| `dist/orangelion.jar` | Prebuilt extension, ready to drop in |
-| `INSTRUCTIONS.md` | Detailed install, customize, and uninstall guide |
+- ING orange (`#FF6200`) colour palette applied across the interface.
+- White login card with a clean "ING" text wordmark (no trademarked lion image).
+- Themed menu, header bars, and buttons.
+- Themed connection list and admin settings pages (Users, Groups, and more).
+- Single-file, drop-in extension: just copy one `.jar`.
+- No web-app rebuild and no source changes to Guacamole.
+- Configurable through CSS variables at the top of the stylesheet.
+- Optional product-name rename on the login page via a translation override.
+
+## Install
+
+Quick version:
+
+1. Copy `dist/guacamole-theme-orangelion.jar` into `GUACAMOLE_HOME/extensions/`.
+2. Restart Guacamole.
+3. Hard refresh your browser (Ctrl+Shift+R, or Cmd+Shift+R on macOS) to clear cached CSS.
+
+Docker note: with the official Guacamole image, mount a folder that contains `extensions/guacamole-theme-orangelion.jar` and set the `GUACAMOLE_HOME` environment variable to point at that folder, then restart the container.
+
+For full step-by-step instructions, customisation options, and uninstall steps, see [INSTRUCTIONS.md](INSTRUCTIONS.md).
 
 ## Customize
 
-Everything is driven by CSS variables at the top of `orangelion.css`:
+- Palette: edit the CSS variables at the top of `orangelion.css` to adjust colours (for example the ING orange value) without touching the rest of the stylesheet.
+- Wordmark: change the "ING" text wordmark in `orangelion.css` to your own label, or point it at a background image.
+- Product name: optionally rename the product shown on the login page by supplying an `APP.NAME` override. See `translations/en.json.example` for the format.
 
-```css
-:root {
-    --ing-orange:      #FF6200;   /* primary accent */
-    --ing-orange-dark: #E15700;   /* button hover   */
-    --ing-charcoal:    #333333;   /* body text      */
-    /* ... */
-}
-```
-
-1. Recolor for another brand: change these values, then run `./build.sh`.
-2. Change the login wordmark: edit the `.login-ui .login-dialog .logo::after`
-   rule (the `content: "ING"` line), or point `.logo` at a real background image.
-3. Rename the product on the login page and browser tab: copy
-   `translations/en.json.example` to `translations/en.json`, edit `APP.NAME`,
-   then run `./build.sh` (the build includes it automatically when present).
+After any change, rebuild the jar with `build.sh` (output: `dist/guacamole-theme-orangelion.jar`), then reinstall and hard refresh.
 
 ## Compatibility
 
-`guacamoleVersion` is set to `*`, and the selectors are stable across Guacamole
-1.5.x and 1.6.x. Tested on 1.5.5 and 1.6.0.
+The manifest declares `guacamoleVersion` `"*"`, and the theme has been tested on Guacamole 1.5.5 and 1.6.0.
+
+## Contributing
+
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md), then open an issue or a pull request with your ideas, fixes, or improvements.
 
 ## License
 
-[MIT](LICENSE).
+Released under the MIT License. See [LICENSE](LICENSE).

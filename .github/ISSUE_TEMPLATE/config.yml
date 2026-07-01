@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and discussion
+    url: https://github.com/rupivbluegreen/orangelion-theme/discussions
+    about: Ask questions, share setups, and discuss the OrangeLion theme here.
+  - name: Installation and customisation guide (README and INSTRUCTIONS)
+    url: https://github.com/rupivbluegreen/orangelion-theme/blob/main/INSTRUCTIONS.md
+    about: Read the install, customise, and uninstall guide before opening an issue.

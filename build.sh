@@ -1,11 +1,12 @@
 #!/usr/bin/env bash
-# Package OrangeLion into a Guacamole extension jar (dist/orangelion.jar).
+# Package OrangeLion into a Guacamole extension jar
+# (dist/guacamole-theme-orangelion.jar).
 # A .jar is a .zip; the manifest + CSS are packed at the archive root.
 # Re-run after editing the manifest or CSS.
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
-jar="$here/dist/orangelion.jar"
+jar="$here/dist/guacamole-theme-orangelion.jar"
 mkdir -p "$here/dist"
 
 python3 - "$here" "$jar" <<'PY'

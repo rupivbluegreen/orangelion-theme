@@ -7,7 +7,7 @@ Guacamole CSS extension (a `.jar`) that Guacamole loads at startup.
 ## 1. What you need
 
 1. A running Apache Guacamole (version 1.5.x or 1.6.x).
-2. The theme jar: `dist/orangelion.jar` from this repo (already prebuilt), or
+2. The theme jar: `dist/guacamole-theme-orangelion.jar` from this repo (already prebuilt), or
    run `./build.sh` to produce it yourself.
 3. Write access to the Guacamole extensions directory, or the ability to set
    the `GUACAMOLE_HOME` environment variable if you run the Docker image.
@@ -28,7 +28,7 @@ Guacamole loads every `.jar` it finds in `GUACAMOLE_HOME/extensions/`.
 1. Copy the jar into the extensions directory:
    ```bash
    mkdir -p "$GUACAMOLE_HOME/extensions"
-   cp dist/orangelion.jar "$GUACAMOLE_HOME/extensions/"
+   cp dist/guacamole-theme-orangelion.jar "$GUACAMOLE_HOME/extensions/"
    ```
 2. Restart Guacamole (for example, restart Tomcat).
 3. Open the portal and hard refresh the browser (Ctrl+Shift+R) to clear cached
@@ -43,7 +43,7 @@ LDAP or the database. Put the jar in a folder and point at it:
 1. Create the folder layout on the host:
    ```bash
    mkdir -p guac-home/extensions
-   cp dist/orangelion.jar guac-home/extensions/
+   cp dist/guacamole-theme-orangelion.jar guac-home/extensions/
    ```
 2. Add the mount and the environment variable to your compose service:
    ```yaml
@@ -95,7 +95,7 @@ All colors are CSS variables at the top of `orangelion.css`:
 
 1. Remove the jar:
    ```bash
-   rm "$GUACAMOLE_HOME/extensions/orangelion.jar"
+   rm "$GUACAMOLE_HOME/extensions/guacamole-theme-orangelion.jar"
    ```
    For the Docker image, remove it from `guac-home/extensions/` instead.
 2. Restart or force recreate Guacamole. The default theme returns.
