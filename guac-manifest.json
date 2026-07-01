@@ -1,0 +1,8 @@
+{
+    "guacamoleVersion": "*",
+    "name": "OrangeLion Theme",
+    "namespace": "orangelion",
+    "css": [
+        "orangelion.css"
+    ]
+}

@@ -1,0 +1,214 @@
+/*
+ * ING color palette theme for Apache Guacamole.
+ *
+ * Recolours the portal to ING's brand: ING Orange (#FF6200) as the primary
+ * accent, white cards, and dark charcoal text on light backgrounds. Applied as
+ * a Guacamole CSS extension, layered on top of the default theme, so selectors
+ * are specific and use !important where they must beat the bundled styles.
+ */
+
+:root {
+    --ing-orange:        #FF6200;
+    --ing-orange-dark:   #E15700;
+    --ing-orange-darker: #C24E00;
+    --ing-charcoal:      #333333;
+    --ing-grey:          #767676;
+    --ing-border:        #D9D9D9;
+    --ing-white:         #FFFFFF;
+    --ing-page:          #FFFFFF;
+}
+
+/* ---------------------------------------------------------------- Base ---- */
+
+html,
+body {
+    background: var(--ing-page) !important;
+    color: var(--ing-charcoal) !important;
+}
+
+a:link,
+a:hover,
+a:active {
+    color: var(--ing-orange) !important;
+}
+
+/* --------------------------------------------------------------- Login ---- */
+
+/* Bold ING-orange login backdrop with a clean white card in the middle. */
+.login-ui {
+    background: linear-gradient(160deg, #FF6200 0%, #FF7A2E 55%, #FF8C42 100%) !important;
+}
+
+.login-ui .login-dialog {
+    background: var(--ing-white) !important;
+    color: var(--ing-charcoal) !important;
+    border-radius: 10px !important;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, .30) !important;
+    padding: 1.75em 1.5em !important;
+    border-top: 6px solid var(--ing-orange) !important;
+}
+
+/* Replace the Guacamole logo mark with an "ING" wordmark (colour, not the
+   trademarked lion). */
+.login-ui .login-dialog .logo {
+    background-image: none !important;
+    width: auto !important;
+    height: auto !important;
+    margin: .1em auto .35em !important;
+}
+
+.login-ui .login-dialog .logo::after {
+    content: "ING";
+    display: block;
+    text-align: center;
+    font-family: Carlito, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 800;
+    font-size: 2.6em;
+    line-height: 1;
+    letter-spacing: .01em;
+    color: var(--ing-orange);
+}
+
+.login-ui .login-dialog .version .app-name,
+.login-ui .login-dialog .version .version-number,
+.login-ui .login-dialog h1 {
+    color: var(--ing-grey) !important;
+    text-shadow: none !important;
+}
+
+/* Input fields: white with a grey border that turns ING orange on focus. */
+.login-ui .login-fields .labeled-field input,
+.login-ui .login-dialog .login-fields input {
+    background: var(--ing-white) !important;
+    color: var(--ing-charcoal) !important;
+    border: 1px solid var(--ing-border) !important;
+    border-radius: 4px !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+}
+
+.login-ui .login-fields .labeled-field input:focus {
+    border-color: var(--ing-orange) !important;
+    box-shadow: 0 0 0 2px rgba(255, 98, 0, .25) !important;
+}
+
+.login-ui .login-fields .labeled-field .field-header {
+    color: var(--ing-grey) !important;
+}
+
+/* ------------------------------------------------------------- Buttons ---- */
+
+/* Primary action buttons -> solid ING orange. */
+input[type=submit],
+button.primary,
+.button.primary {
+    background: var(--ing-orange) !important;
+    background-color: var(--ing-orange) !important;
+    color: var(--ing-white) !important;
+    border: 1px solid var(--ing-orange-dark) !important;
+    text-shadow: none !important;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, .2) !important;
+    font-weight: 700 !important;
+}
+
+input[type=submit]:hover,
+button.primary:hover,
+.button.primary:hover {
+    background: var(--ing-orange-dark) !important;
+    background-color: var(--ing-orange-dark) !important;
+    border-color: var(--ing-orange-darker) !important;
+}
+
+/* Secondary buttons -> outlined ING orange on white. */
+.button,
+button {
+    background: var(--ing-white) !important;
+    color: var(--ing-orange) !important;
+    border: 2px solid var(--ing-orange) !important;
+    text-shadow: none !important;
+    box-shadow: none !important;
+}
+
+.button:hover,
+button:hover {
+    background: var(--ing-orange) !important;
+    color: var(--ing-white) !important;
+}
+
+/* Keep the login button full-width and orange. */
+.login-ui .login-dialog .buttons input[type=submit] {
+    width: 100% !important;
+    padding: .6em 1em !important;
+    font-size: 1.05em !important;
+}
+
+/* ------------------------------------------- Post-login menu / header ---- */
+
+/* Top menu bar and section headers -> ING orange with white text. */
+.menu,
+#guac-menu,
+.menu .header,
+.header {
+    background: var(--ing-orange) !important;
+    color: var(--ing-white) !important;
+    text-shadow: none !important;
+}
+
+.menu .header h2,
+.header h2,
+#guac-menu .header h2 {
+    color: var(--ing-white) !important;
+}
+
+/* Menu buttons sit on the orange bar: white outline style. */
+.menu .button,
+.menu button,
+#guac-menu .button,
+#guac-menu button {
+    background: transparent !important;
+    color: var(--ing-white) !important;
+    border: 2px solid rgba(255, 255, 255, .85) !important;
+}
+
+.menu .button:hover,
+.menu button:hover,
+#guac-menu .button:hover,
+#guac-menu button:hover {
+    background: var(--ing-white) !important;
+    color: var(--ing-orange) !important;
+}
+
+/* ----------------------------------------------- Connection list / home -- */
+
+.all-connections,
+.connection-list,
+.home {
+    background: var(--ing-page) !important;
+    color: var(--ing-charcoal) !important;
+}
+
+/* Connection / group rows: charcoal text, orange hover highlight. */
+.connection,
+.connection-group,
+a.home-connection,
+.home-connection-group {
+    color: var(--ing-charcoal) !important;
+}
+
+.connection:hover,
+a.home-connection:hover,
+.connection-group .caption:hover {
+    background: rgba(255, 98, 0, .10) !important;
+}
+
+/* Connection protocol icons / carets keep contrast on light rows. */
+.connection a,
+.connection a:hover,
+.connection a:visited {
+    color: var(--ing-charcoal) !important;
+}
+
+/* Notifications / dialogs accent. */
+.notification {
+    border-top: 4px solid var(--ing-orange) !important;
+}
