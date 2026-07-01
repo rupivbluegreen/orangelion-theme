@@ -13,6 +13,7 @@
 [![Build](https://github.com/rupivbluegreen/orangelion-theme/actions/workflows/build.yml/badge.svg)](https://github.com/rupivbluegreen/orangelion-theme/actions/workflows/build.yml)
 [![Release](https://img.shields.io/github/v/release/rupivbluegreen/orangelion-theme?color=orange)](https://github.com/rupivbluegreen/orangelion-theme/releases/latest)
 [![Downloads](https://img.shields.io/github/downloads/rupivbluegreen/orangelion-theme/total?color=orange)](https://github.com/rupivbluegreen/orangelion-theme/releases)
+[![Website](https://img.shields.io/badge/website-live-FF6200.svg)](https://rupivbluegreen.github.io/orangelion-theme/)
 
 </div>
 
