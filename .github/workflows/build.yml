@@ -46,7 +46,7 @@ jobs:
 
       - name: Attach jar to the GitHub Release (on version tags)
         if: startsWith(github.ref, 'refs/tags/v')
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           files: dist/guacamole-theme-orangelion.jar
           generate_release_notes: true
