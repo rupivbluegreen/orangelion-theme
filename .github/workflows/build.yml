@@ -51,7 +51,7 @@ jobs:
           docker run -d --name guac \
             -e GUACD_HOSTNAME=localhost -e GUACAMOLE_HOME=/gh \
             -v "$PWD/gh:/gh:ro" "guacamole/guacamole:${GUAC_TAG}"
-          for i in $(seq 1 90); do
+          for _ in $(seq 1 90); do
             docker logs guac 2>&1 | grep -q "Server startup in" && break
             sleep 2
           done
