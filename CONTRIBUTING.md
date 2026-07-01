@@ -54,7 +54,7 @@ If you do not see the log line, the extension was not picked up. Check that the 
 - Keep selectors specific so the theme targets the intended elements and does not leak into unrelated parts of the interface.
 - Prefer not to use `!important`. Reach for it only where it is genuinely needed to beat the bundled Guacamole theme, and keep those cases to a minimum.
 - Match the existing formatting and grouping in the CSS so related rules stay together.
-- Do not add trademarked assets. The wordmark is plain "OrangeLion" text, not a logo image.
+- Do not add trademarked assets. The login mark is a Unicode lion emoji, not a logo image.
 
 ## Proposing changes
 

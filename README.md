@@ -17,7 +17,7 @@
 
 </div>
 
-OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the orange colour scheme, using a plain "OrangeLion" text wordmark instead of any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is unofficial and community-maintained.
+OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the orange colour scheme, using a lion emoji mark rather than any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is unofficial and community-maintained.
 
 ## Contents
 
@@ -35,7 +35,7 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 
 | Login | Connections |
 | --- | --- |
-| ![Login page: orange background, white card, OrangeLion wordmark](screenshots/login.png) | ![Connection list with orange header bars](screenshots/connections.png) |
+| ![Login page: orange background, white card, lion emoji mark](screenshots/login.png) | ![Connection list with orange header bars](screenshots/connections.png) |
 
 | Admin: Users | Admin: Groups |
 | --- | --- |
@@ -44,7 +44,7 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 ## Features
 
 - orange (`#FF6200`) colour palette applied across the interface.
-- White login card with a clean "OrangeLion" text wordmark (no trademarked lion image).
+- White login card with a lion emoji mark (a standard Unicode glyph, not a trademarked logo).
 - Themed menu, header bars, and buttons.
 - Themed connection list and admin settings pages (Users, Groups, and more).
 - Single-file, drop-in extension: just copy one `.jar`.
@@ -93,14 +93,14 @@ For full step-by-step instructions, customisation options, and uninstall steps, 
 ## Customize
 
 - Palette: edit the CSS variables at the top of `orangelion.css` to adjust colours (for example the orange value) without touching the rest of the stylesheet.
-- Wordmark: change the "OrangeLion" text wordmark in `orangelion.css` to your own label, or point it at a background image.
+- Wordmark: change the lion emoji in `orangelion.css` (the `content` value on `.logo::after`) to your own text or emoji, or point `.logo` at a background image.
 - Product name: optionally rename the product shown on the login page by supplying an `APP.NAME` override. See `translations/en.json.example` for the format.
 
 All colours are defined as CSS variables in the `:root` block at the top of `orangelion.css`:
 
 | Variable | Default | Controls |
 | --- | --- | --- |
-| `--brand-orange` | `#FF6200` | Primary accent: fills, borders, wordmark |
+| `--brand-orange` | `#FF6200` | Primary accent: fills, borders, accents |
 | `--brand-orange-dark` | `#E15700` | Button hover |
 | `--brand-orange-darker` | `#C24E00` | Accessible text orange (4.79:1 on white) |
 | `--brand-charcoal` | `#333333` | Body text |

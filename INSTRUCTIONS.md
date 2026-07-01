@@ -73,7 +73,7 @@ restricted-SCC notes and ready-to-adapt manifests, see
    ```
    You should see: `Extension "OrangeLion Theme" (orangelion) loaded.`
 2. Open the login page. It should show the orange background, a white card, and
-   the "OrangeLion" wordmark.
+   the lion emoji mark.
 
 ## 5. Customize (optional)
 
@@ -81,7 +81,7 @@ All colors are CSS variables at the top of `orangelion.css`:
 
 1. Edit the palette, for example `--brand-orange: #FF6200;`.
 2. Change the login wordmark by editing the `.login-ui .login-dialog .logo::after`
-   rule (the `content: "OrangeLion"` line), or point `.logo` at a real image.
+   rule (the `content` value, currently a lion emoji), or point `.logo` at a real image.
 3. Rename the product on the login page and browser tab: copy
    `translations/en.json.example` to `translations/en.json`, edit `APP.NAME`,
    and rebuild. The build script includes that file automatically when present.

@@ -50,8 +50,7 @@ a:active {
     border-top: 6px solid var(--brand-orange) !important;
 }
 
-/* Replace the Guacamole logo mark with an "OrangeLion" wordmark (colour, not the
-   trademarked lion). */
+/* Replace the Guacamole logo mark with a lion emoji mark. */
 .login-ui .login-dialog .logo {
     background-image: none !important;
     width: auto !important;
@@ -60,12 +59,12 @@ a:active {
 }
 
 .login-ui .login-dialog .logo::after {
-    content: "OrangeLion";
+    content: "\1F981";
     display: block;
     text-align: center;
-    font-family: Carlito, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif;
     font-weight: 800;
-    font-size: 2.6em;
+    font-size: 3.4em;
     line-height: 1;
     letter-spacing: .01em;
     color: var(--brand-orange);

@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet. Planned changes will be listed here before the next release.
+### Changed
+
+- The login mark is now a lion emoji (a standard Unicode glyph) instead of the "OrangeLion" text wordmark. Screenshots updated to match.
 
 ## [1.1.0] - 2026-07-01
 
