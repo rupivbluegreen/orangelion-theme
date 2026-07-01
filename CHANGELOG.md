@@ -7,15 +7,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Nothing yet. Planned changes will be listed here before the next release.
+
+## [1.1.0] - 2026-07-01
+
 ### Added
 
 - Custom browser-tab favicon and app icon: an orange lion mark, set through the manifest `smallIcon` and `largeIcon` fields (`images/lion-64.png`, `images/lion-144.png`).
 - Brand accent colour on native form controls (checkboxes, radio buttons, range inputs) via `accent-color`, replacing the browser default blue.
 - Visible keyboard focus ring on interactive elements (WCAG 2.4.7), branded visited links, and disabled-button styling.
+- Documentation: a README table of contents, live build, release, and downloads badges, copy-paste install commands with a success check, a CSS variable reference table with a recolor recipe, and an FAQ.
+- Project health: a Code of Conduct, a Security policy, a pull request template, CODEOWNERS, and a go-to-market kit in `docs/promotion.md`.
+- Continuous integration: a build workflow that lints (actionlint, shellcheck, stylelint) and smoke-tests the extension against Guacamole 1.5.5 and 1.6.0 with pinned action SHAs, plus a release job that publishes a SHA-256 checksum and a SLSA build-provenance attestation for the jar.
 
 ### Changed
 
 - Text-sized orange now uses the darker `#C24E00` for links and outline-button labels, meeting WCAG AA contrast on white. The brighter `#FF6200` is retained for fills, borders, and the wordmark.
+
+### Compatibility
+
+- Tested on Guacamole 1.5.5 and 1.6.0.
 
 ## [1.0.0] - 2026-07-01
 
@@ -41,5 +52,6 @@ Initial public release of OrangeLion, an unofficial Apache Guacamole theme in th
 
 - `guacamoleVersion` set to `*`. Tested on Guacamole 1.5.5 and 1.6.0.
 
-[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.1.0...HEAD
+[1.1.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/rupivbluegreen/orangelion-theme/releases/tag/v1.0.0
