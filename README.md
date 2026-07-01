@@ -38,9 +38,11 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 
 ## Install
 
+Download the latest `guacamole-theme-orangelion.jar` from the [Releases](https://github.com/rupivbluegreen/orangelion-theme/releases) page, or use the prebuilt copy in `dist/` in this repo.
+
 Quick version:
 
-1. Copy `dist/guacamole-theme-orangelion.jar` into `GUACAMOLE_HOME/extensions/`.
+1. Copy `guacamole-theme-orangelion.jar` into `GUACAMOLE_HOME/extensions/`.
 2. Restart Guacamole.
 3. Hard refresh your browser (Ctrl+Shift+R, or Cmd+Shift+R on macOS) to clear cached CSS.
 
@@ -60,9 +62,13 @@ After any change, rebuild the jar with `build.sh` (output: `dist/guacamole-theme
 
 The manifest declares `guacamoleVersion` `"*"`, and the theme has been tested on Guacamole 1.5.5 and 1.6.0.
 
+## Roadmap
+
+Planned improvements are tracked as [issues](https://github.com/rupivbluegreen/orangelion-theme/issues). Highlights include a configurable brand colour and wordmark, optional SVG logo support, a dark-mode variant, CI-built tagged releases, a WCAG contrast audit, and a documented Guacamole version compatibility matrix. Contributions toward any of these are welcome.
+
 ## Contributing
 
-Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md), then open an issue or a pull request with your ideas, fixes, or improvements.
+Contributions are welcome. Please read [CONTRIBUTING.md](CONTRIBUTING.md), then open an issue or a pull request with your ideas, fixes, or improvements. This project also follows a [Code of Conduct](CODE_OF_CONDUCT.md).
 
 ## License
 

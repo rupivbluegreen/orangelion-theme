@@ -1,0 +1,52 @@
+name: build
+
+on:
+  push:
+    branches: [main]
+    tags: ["v*"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build extension jar
+        run: ./build.sh
+
+      - name: Smoke test that the extension loads in Guacamole
+        run: |
+          mkdir -p gh/extensions
+          cp dist/guacamole-theme-orangelion.jar gh/extensions/
+          docker run -d --name guac \
+            -e GUACD_HOSTNAME=localhost -e GUACAMOLE_HOME=/gh \
+            -v "$PWD/gh:/gh:ro" guacamole/guacamole:1.6.0
+          for i in $(seq 1 60); do
+            docker logs guac 2>&1 | grep -q "Server startup in" && break
+            sleep 2
+          done
+          if docker logs guac 2>&1 | grep -q 'Extension "OrangeLion Theme" (orangelion) loaded'; then
+            echo "OrangeLion theme loaded successfully"
+          else
+            echo "OrangeLion theme did not load"
+            docker logs guac
+            exit 1
+          fi
+
+      - name: Upload jar as a build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: guacamole-theme-orangelion
+          path: dist/guacamole-theme-orangelion.jar
+
+      - name: Attach jar to the GitHub Release (on version tags)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/guacamole-theme-orangelion.jar
+          generate_release_notes: true
