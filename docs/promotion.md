@@ -62,7 +62,7 @@ I put together OrangeLion, a small CSS-only theme extension that gives Apache Gu
 
 What it does: it repaints the login page, menus, header bars, buttons, the connection list, and the admin settings screens (Users, Groups, and more) in an orange palette. The login page uses a plain "OrangeLion" text wordmark rather than any trademarked logo.
 
-How it installs: it is a single drop-in .jar. You copy guacamole-theme-orangelion.jar into your GUACAMOLE_HOME/extensions/ folder, restart Guacamole, and hard refresh the browser. There is no web-app rebuild and no change to the Guacamole source. The palette and wordmark are configurable through CSS variables at the top of the stylesheet, and you can optionally rename the product on the login page with a translation override.
+How it installs: it is a single drop-in .jar. You copy guacamole-theme-orangelion.jar into your GUACAMOLE_HOME/extensions/ folder, restart Guacamole, and hard refresh the browser. There is no web-app rebuild and no change to the Guacamole source. It deploys the same way on Docker, Kubernetes, and OpenShift, with ready-to-adapt manifests in the deployment guide. The palette and wordmark are configurable through CSS variables at the top of the stylesheet, and you can optionally rename the product on the login page with a translation override.
 
 Compatibility: the extension manifest declares a version of "*", and I have tested the theme on Guacamole 1.5.5 and 1.6.0.
 

@@ -113,6 +113,11 @@
   .code .cp:hover{background:rgba(255,178,122,.14)}
   .ok{margin-top:16px; font-size:14.5px; color:#cbb9ab}
   .ok code{color:#ffd9bd; font-family:var(--mono); font-size:13px}
+  .platforms{display:flex; align-items:center; gap:10px; flex-wrap:wrap; margin-top:28px}
+  .platforms .plabel{font-size:12px; font-weight:700; letter-spacing:.1em; text-transform:uppercase; color:#a58c78}
+  .pchip{font-size:13.5px; font-weight:700; color:#ffd9bd; border:1px solid rgba(255,178,122,.35); border-radius:999px; padding:6px 14px}
+  .pdoc{color:#ffb27a; font-weight:700; font-size:14px; margin-left:6px}
+  .pdoc:hover{text-decoration:underline}
 
   /* cta band */
   .band{background:linear-gradient(115deg,var(--orange) 0%, #FF7A2E 60%, #FF9147 100%); color:#fff; text-align:center}
@@ -189,6 +194,7 @@
         <div class="trust an">
           <span>MIT licensed</span><span>Guacamole 1.5.x and 1.6.x</span>
           <span>One file, no rebuild</span><span>WCAG AA text</span><span>SLSA provenance</span>
+          <span>Docker, Kubernetes, OpenShift</span>
         </div>
       </div>
       <div class="lion-stage an"><svg class="lion-svg" aria-label="OrangeLion logo"><use href="#lion"/></svg></div>
@@ -228,13 +234,20 @@
     <div class="wrap">
       <p class="eyebrow rv">Install</p>
       <h2 class="rv">Two commands, then hard refresh.</h2>
-      <p class="sub rv">Drop the jar into any Guacamole install, or mount it into the official Docker image with a <code>GUACAMOLE_HOME</code> template.</p>
+      <p class="sub rv">Drop the jar into any Guacamole install, mount it into the official Docker image with a <code>GUACAMOLE_HOME</code> template, or orchestrate it on Kubernetes and OpenShift.</p>
       <div class="code rv">
         <div class="top"><span>bash</span><button class="cp" data-code="mkdir -p &quot;$GUACAMOLE_HOME/extensions&quot;&#10;cp guacamole-theme-orangelion.jar &quot;$GUACAMOLE_HOME/extensions/&quot;">Copy</button></div>
         <pre>mkdir -p "$GUACAMOLE_HOME/extensions"
 cp guacamole-theme-orangelion.jar "$GUACAMOLE_HOME/extensions/"</pre>
       </div>
       <p class="ok rv">Restart Guacamole and hard refresh. The log should read <code>Extension "OrangeLion Theme" (orangelion) loaded</code>. Full steps, including the Docker method, are in the <a href="https://github.com/rupivbluegreen/orangelion-theme/blob/main/INSTRUCTIONS.md" style="color:#ffb27a">instructions</a>.</p>
+      <div class="platforms rv">
+        <span class="plabel">Deploy on</span>
+        <span class="pchip">Docker</span>
+        <span class="pchip">Kubernetes</span>
+        <span class="pchip">OpenShift</span>
+        <a class="pdoc" href="https://github.com/rupivbluegreen/orangelion-theme/blob/main/docs/DEPLOYMENT.md">Deployment guide &rarr;</a>
+      </div>
     </div>
   </section>
 
