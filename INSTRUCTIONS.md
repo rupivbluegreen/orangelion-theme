@@ -61,6 +61,10 @@ LDAP or the database. Put the jar in a folder and point at it:
    docker compose up -d --force-recreate guacamole
    ```
 
+For orchestrated platforms (Kubernetes and OpenShift), including the OpenShift
+restricted-SCC notes and ready-to-adapt manifests, see
+[docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
+
 ## 4. Verify it loaded
 
 1. Check the logs for the load line:

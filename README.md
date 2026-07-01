@@ -88,7 +88,7 @@ After restarting, the Guacamole log should show: `Extension "OrangeLion Theme" (
 
 Finally, hard refresh your browser (Ctrl+Shift+R, or Cmd+Shift+R on macOS) to clear cached CSS so the new theme loads.
 
-For full step-by-step instructions, customisation options, and uninstall steps, see [INSTRUCTIONS.md](INSTRUCTIONS.md).
+For full step-by-step instructions, customisation options, and uninstall steps, see [INSTRUCTIONS.md](INSTRUCTIONS.md). Deploying on Docker, Kubernetes, or OpenShift? See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md).
 
 ## Customize
 
