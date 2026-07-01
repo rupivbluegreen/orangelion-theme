@@ -1,19 +1,19 @@
 # 🦁 OrangeLion
 
-A drop-in Apache Guacamole theme that restyles the web interface into the ING orange palette.
+A drop-in Apache Guacamole theme that restyles the web interface into the orange palette.
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Guacamole](https://img.shields.io/badge/Guacamole-1.5.x%20%7C%201.6.x-blue.svg)](https://guacamole.apache.org/)
 [![extension](https://img.shields.io/badge/extension-CSS%20theme-orange.svg)](guac-manifest.json)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
-OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the ING orange colour scheme, using a plain "ING" text wordmark instead of any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is unofficial and is not affiliated with, endorsed by, or sponsored by ING.
+OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the login page, menus, header bars, buttons, connection list, and admin settings screens in the orange colour scheme, using a plain "OrangeLion" text wordmark instead of any trademarked logo. It ships as a single `.jar` that you drop into your Guacamole extensions folder, so it layers on top of any install without rebuilding the web app. This project is an unofficial, community-maintained project.
 
 ## Screenshots
 
 | Login | Connections |
 | --- | --- |
-| ![Login page: orange background, white card, ING wordmark](screenshots/login.png) | ![Connection list with orange header bars](screenshots/connections.png) |
+| ![Login page: orange background, white card, OrangeLion wordmark](screenshots/login.png) | ![Connection list with orange header bars](screenshots/connections.png) |
 
 | Admin: Users | Admin: Groups |
 | --- | --- |
@@ -21,8 +21,8 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 
 ## Features
 
-- ING orange (`#FF6200`) colour palette applied across the interface.
-- White login card with a clean "ING" text wordmark (no trademarked lion image).
+- orange (`#FF6200`) colour palette applied across the interface.
+- White login card with a clean "OrangeLion" text wordmark (no trademarked lion image).
 - Themed menu, header bars, and buttons.
 - Themed connection list and admin settings pages (Users, Groups, and more).
 - Single-file, drop-in extension: just copy one `.jar`.
@@ -44,8 +44,8 @@ For full step-by-step instructions, customisation options, and uninstall steps, 
 
 ## Customize
 
-- Palette: edit the CSS variables at the top of `orangelion.css` to adjust colours (for example the ING orange value) without touching the rest of the stylesheet.
-- Wordmark: change the "ING" text wordmark in `orangelion.css` to your own label, or point it at a background image.
+- Palette: edit the CSS variables at the top of `orangelion.css` to adjust colours (for example the orange value) without touching the rest of the stylesheet.
+- Wordmark: change the "OrangeLion" text wordmark in `orangelion.css` to your own label, or point it at a background image.
 - Product name: optionally rename the product shown on the login page by supplying an `APP.NAME` override. See `translations/en.json.example` for the format.
 
 After any change, rebuild the jar with `build.sh` (output: `dist/guacamole-theme-orangelion.jar`), then reinstall and hard refresh.

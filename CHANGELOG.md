@@ -11,13 +11,13 @@ Nothing yet. Planned changes will be listed here before the next release.
 
 ## [1.0.0] - 2026-07-01
 
-Initial public release of OrangeLion, an unofficial Apache Guacamole theme in the ING colour palette. This project is not affiliated with ING.
+Initial public release of OrangeLion, an unofficial Apache Guacamole theme in the orange palette. This project is not affiliated with any organisation.
 
 ### Added
 
-- ING orange (`#FF6200`) theme for Apache Guacamole, packaged as a drop-in CSS extension (`.jar`).
-- Restyled login page: orange background, white login card, and an "ING" text wordmark (no trademarked lion image).
-- Themed menu and header bars in the ING orange palette.
+- orange (`#FF6200`) theme for Apache Guacamole, packaged as a drop-in CSS extension (`.jar`).
+- Restyled login page: orange background, white login card, and an "OrangeLion" text wordmark (no trademarked lion image).
+- Themed menu and header bars in the orange palette.
 - Themed buttons across the interface.
 - Themed connection list with orange header bars.
 - Themed admin settings pages, including Settings > Users and Settings > Groups.

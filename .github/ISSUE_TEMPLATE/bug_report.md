@@ -7,7 +7,7 @@ labels: bug
 
 ## Description
 
-A clear and concise description of what the bug is. Please note that OrangeLion is an unofficial theme and is NOT affiliated with ING.
+A clear and concise description of what the bug is. Please note that OrangeLion is an unofficial theme and is NOT.
 
 ## Guacamole version
 

@@ -1,6 +1,6 @@
 # Contributing to OrangeLion
 
-Thanks for your interest in improving OrangeLion, an unofficial Apache Guacamole theme that restyles the interface into the ING colour palette. This project is community maintained and is not affiliated with ING.
+Thanks for your interest in improving OrangeLion, an unofficial Apache Guacamole theme that restyles the interface into the orange palette. This project is community maintained and is not affiliated with any organisation.
 
 This guide is intentionally short and practical. Please read it before opening an issue or a pull request.
 
@@ -50,11 +50,11 @@ If you do not see the log line, the extension was not picked up. Check that the 
 
 ## Coding and style conventions
 
-- Define colours as CSS variables near the top of `orangelion.css`, then reference them. The main brand colour is ING Orange (`#FF6200`). Do not hard-code the same colour value in multiple places.
+- Define colours as CSS variables near the top of `orangelion.css`, then reference them. The main brand colour is orange (`#FF6200`). Do not hard-code the same colour value in multiple places.
 - Keep selectors specific so the theme targets the intended elements and does not leak into unrelated parts of the interface.
 - Prefer not to use `!important`. Reach for it only where it is genuinely needed to beat the bundled Guacamole theme, and keep those cases to a minimum.
 - Match the existing formatting and grouping in the CSS so related rules stay together.
-- Do not add trademarked assets. The wordmark is plain "ING" text, not a logo image.
+- Do not add trademarked assets. The wordmark is plain "OrangeLion" text, not a logo image.
 
 ## Proposing changes
 

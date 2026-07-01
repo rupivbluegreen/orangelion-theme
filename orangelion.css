@@ -1,54 +1,54 @@
 /*
- * ING color palette theme for Apache Guacamole.
+ * orange palette theme for Apache Guacamole.
  *
- * Recolours the portal to ING's brand: ING Orange (#FF6200) as the primary
+ * Recolours the portal to the brand: orange (#FF6200) as the primary
  * accent, white cards, and dark charcoal text on light backgrounds. Applied as
  * a Guacamole CSS extension, layered on top of the default theme, so selectors
  * are specific and use !important where they must beat the bundled styles.
  */
 
 :root {
-    --ing-orange:        #FF6200;
-    --ing-orange-dark:   #E15700;
-    --ing-orange-darker: #C24E00;
-    --ing-charcoal:      #333333;
-    --ing-grey:          #767676;
-    --ing-border:        #D9D9D9;
-    --ing-white:         #FFFFFF;
-    --ing-page:          #FFFFFF;
+    --brand-orange:        #FF6200;
+    --brand-orange-dark:   #E15700;
+    --brand-orange-darker: #C24E00;
+    --brand-charcoal:      #333333;
+    --brand-grey:          #767676;
+    --brand-border:        #D9D9D9;
+    --brand-white:         #FFFFFF;
+    --brand-page:          #FFFFFF;
 }
 
 /* ---------------------------------------------------------------- Base ---- */
 
 html,
 body {
-    background: var(--ing-page) !important;
-    color: var(--ing-charcoal) !important;
+    background: var(--brand-page) !important;
+    color: var(--brand-charcoal) !important;
 }
 
 a:link,
 a:hover,
 a:active {
-    color: var(--ing-orange) !important;
+    color: var(--brand-orange) !important;
 }
 
 /* --------------------------------------------------------------- Login ---- */
 
-/* Bold ING-orange login backdrop with a clean white card in the middle. */
+/* Bold orange login backdrop with a clean white card in the middle. */
 .login-ui {
     background: linear-gradient(160deg, #FF6200 0%, #FF7A2E 55%, #FF8C42 100%) !important;
 }
 
 .login-ui .login-dialog {
-    background: var(--ing-white) !important;
-    color: var(--ing-charcoal) !important;
+    background: var(--brand-white) !important;
+    color: var(--brand-charcoal) !important;
     border-radius: 10px !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, .30) !important;
     padding: 1.75em 1.5em !important;
-    border-top: 6px solid var(--ing-orange) !important;
+    border-top: 6px solid var(--brand-orange) !important;
 }
 
-/* Replace the Guacamole logo mark with an "ING" wordmark (colour, not the
+/* Replace the Guacamole logo mark with an "OrangeLion" wordmark (colour, not the
    trademarked lion). */
 .login-ui .login-dialog .logo {
     background-image: none !important;
@@ -58,7 +58,7 @@ a:active {
 }
 
 .login-ui .login-dialog .logo::after {
-    content: "ING";
+    content: "OrangeLion";
     display: block;
     text-align: center;
     font-family: Carlito, "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -66,46 +66,46 @@ a:active {
     font-size: 2.6em;
     line-height: 1;
     letter-spacing: .01em;
-    color: var(--ing-orange);
+    color: var(--brand-orange);
 }
 
 .login-ui .login-dialog .version .app-name,
 .login-ui .login-dialog .version .version-number,
 .login-ui .login-dialog h1 {
-    color: var(--ing-grey) !important;
+    color: var(--brand-grey) !important;
     text-shadow: none !important;
 }
 
-/* Input fields: white with a grey border that turns ING orange on focus. */
+/* Input fields: white with a grey border that turns orange on focus. */
 .login-ui .login-fields .labeled-field input,
 .login-ui .login-dialog .login-fields input {
-    background: var(--ing-white) !important;
-    color: var(--ing-charcoal) !important;
-    border: 1px solid var(--ing-border) !important;
+    background: var(--brand-white) !important;
+    color: var(--brand-charcoal) !important;
+    border: 1px solid var(--brand-border) !important;
     border-radius: 4px !important;
     box-shadow: none !important;
     text-shadow: none !important;
 }
 
 .login-ui .login-fields .labeled-field input:focus {
-    border-color: var(--ing-orange) !important;
+    border-color: var(--brand-orange) !important;
     box-shadow: 0 0 0 2px rgba(255, 98, 0, .25) !important;
 }
 
 .login-ui .login-fields .labeled-field .field-header {
-    color: var(--ing-grey) !important;
+    color: var(--brand-grey) !important;
 }
 
 /* ------------------------------------------------------------- Buttons ---- */
 
-/* Primary action buttons -> solid ING orange. */
+/* Primary action buttons -> solid orange. */
 input[type=submit],
 button.primary,
 .button.primary {
-    background: var(--ing-orange) !important;
-    background-color: var(--ing-orange) !important;
-    color: var(--ing-white) !important;
-    border: 1px solid var(--ing-orange-dark) !important;
+    background: var(--brand-orange) !important;
+    background-color: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
+    border: 1px solid var(--brand-orange-dark) !important;
     text-shadow: none !important;
     box-shadow: 0 1px 2px rgba(0, 0, 0, .2) !important;
     font-weight: 700 !important;
@@ -114,25 +114,25 @@ button.primary,
 input[type=submit]:hover,
 button.primary:hover,
 .button.primary:hover {
-    background: var(--ing-orange-dark) !important;
-    background-color: var(--ing-orange-dark) !important;
-    border-color: var(--ing-orange-darker) !important;
+    background: var(--brand-orange-dark) !important;
+    background-color: var(--brand-orange-dark) !important;
+    border-color: var(--brand-orange-darker) !important;
 }
 
-/* Secondary buttons -> outlined ING orange on white. */
+/* Secondary buttons -> outlined orange on white. */
 .button,
 button {
-    background: var(--ing-white) !important;
-    color: var(--ing-orange) !important;
-    border: 2px solid var(--ing-orange) !important;
+    background: var(--brand-white) !important;
+    color: var(--brand-orange) !important;
+    border: 2px solid var(--brand-orange) !important;
     text-shadow: none !important;
     box-shadow: none !important;
 }
 
 .button:hover,
 button:hover {
-    background: var(--ing-orange) !important;
-    color: var(--ing-white) !important;
+    background: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
 }
 
 /* Keep the login button full-width and orange. */
@@ -144,20 +144,20 @@ button:hover {
 
 /* ------------------------------------------- Post-login menu / header ---- */
 
-/* Top menu bar and section headers -> ING orange with white text. */
+/* Top menu bar and section headers -> orange with white text. */
 .menu,
 #guac-menu,
 .menu .header,
 .header {
-    background: var(--ing-orange) !important;
-    color: var(--ing-white) !important;
+    background: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
     text-shadow: none !important;
 }
 
 .menu .header h2,
 .header h2,
 #guac-menu .header h2 {
-    color: var(--ing-white) !important;
+    color: var(--brand-white) !important;
 }
 
 /* Menu buttons sit on the orange bar: white outline style. */
@@ -166,7 +166,7 @@ button:hover {
 #guac-menu .button,
 #guac-menu button {
     background: transparent !important;
-    color: var(--ing-white) !important;
+    color: var(--brand-white) !important;
     border: 2px solid rgba(255, 255, 255, .85) !important;
 }
 
@@ -174,8 +174,8 @@ button:hover {
 .menu button:hover,
 #guac-menu .button:hover,
 #guac-menu button:hover {
-    background: var(--ing-white) !important;
-    color: var(--ing-orange) !important;
+    background: var(--brand-white) !important;
+    color: var(--brand-orange) !important;
 }
 
 /* ----------------------------------------------- Connection list / home -- */
@@ -183,8 +183,8 @@ button:hover {
 .all-connections,
 .connection-list,
 .home {
-    background: var(--ing-page) !important;
-    color: var(--ing-charcoal) !important;
+    background: var(--brand-page) !important;
+    color: var(--brand-charcoal) !important;
 }
 
 /* Connection / group rows: charcoal text, orange hover highlight. */
@@ -192,7 +192,7 @@ button:hover {
 .connection-group,
 a.home-connection,
 .home-connection-group {
-    color: var(--ing-charcoal) !important;
+    color: var(--brand-charcoal) !important;
 }
 
 .connection:hover,
@@ -205,10 +205,10 @@ a.home-connection:hover,
 .connection a,
 .connection a:hover,
 .connection a:visited {
-    color: var(--ing-charcoal) !important;
+    color: var(--brand-charcoal) !important;
 }
 
 /* Notifications / dialogs accent. */
 .notification {
-    border-top: 4px solid var(--ing-orange) !important;
+    border-top: 4px solid var(--brand-orange) !important;
 }

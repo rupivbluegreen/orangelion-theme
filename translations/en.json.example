@@ -1,5 +1,5 @@
 {
-    "_comment": "Optional: rename the product shown on the login page / browser tab / menu. Copy this file to translations/en.json (drop the .example), edit APP.NAME, and re-run build.sh. The login wordmark stays 'ING' (see orangelion.css) unless you change that too.",
+    "_comment": "Optional: rename the product shown on the login page / browser tab / menu. Copy this file to translations/en.json (drop the .example), edit APP.NAME, and re-run build.sh. The login wordmark stays 'OrangeLion' (see orangelion.css) unless you change that too.",
     "APP": {
         "NAME": "SteppingStone Service"
     }
