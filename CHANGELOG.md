@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Nothing yet. Planned changes will be listed here before the next release.
+
+## [1.2.0] - 2026-07-01
+
+### Added
+
+- Deployment guide (`docs/DEPLOYMENT.md`) covering Docker, Kubernetes (an initContainer that pulls the signed release, or a ConfigMap), and OpenShift (the restricted-SCC writable-HOME fix, a Route, and a BuildConfig alternative). Linked from the README, INSTRUCTIONS, and the landing page.
+- A GitHub Pages landing site under `docs/`.
+
 ### Changed
 
 - The login mark is now a lion emoji (a standard Unicode glyph) instead of the "OrangeLion" text wordmark. Screenshots updated to match.
@@ -54,6 +63,7 @@ Initial public release of OrangeLion, an unofficial Apache Guacamole theme in th
 
 - `guacamoleVersion` set to `*`. Tested on Guacamole 1.5.5 and 1.6.0.
 
-[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.2.0...HEAD
+[1.2.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/rupivbluegreen/orangelion-theme/releases/tag/v1.0.0
