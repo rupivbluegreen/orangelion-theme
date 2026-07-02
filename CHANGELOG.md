@@ -7,7 +7,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet. Planned changes will be listed here before the next release.
+### Fixed
+
+- Login card top edge. Removed the 6px orange `border-top` accent stripe from the login card in both the light and dark rules, and gave the card a card-coloured 1px border so the orange page backdrop can no longer bleed a hairline anti-aliasing seam at the card's rounded edge. The card top is now clean in both light and dark mode. (#24)
 
 ## [1.3.0] - 2026-07-02
 

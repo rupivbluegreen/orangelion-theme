@@ -46,9 +46,12 @@ a:active {
     background: var(--brand-white) !important;
     color: var(--brand-charcoal) !important;
     border-radius: 10px !important;
+    /* Card-coloured 1px border extends the fill to the anti-aliased edge so the
+       orange backdrop cannot bleed a hairline seam at the card's rounded edge
+       (matches the dark-mode card; imperceptible on the white card). */
+    border: 1px solid var(--brand-white) !important;
     box-shadow: 0 12px 40px rgba(0, 0, 0, .30) !important;
     padding: 1.75em 1.5em !important;
-    border-top: 6px solid var(--brand-orange) !important;
 }
 
 /* @orangelion:branding-start */
@@ -332,9 +335,12 @@ input[type=range] {
         background: #242424 !important;
         color: var(--brand-charcoal) !important;
         border-radius: 10px !important;
+        /* Card-coloured 1px border extends the fill to the anti-aliased edge so
+           the bright orange backdrop does not bleed a hairline seam on the dark
+           card (harmless AA fringe, invisible on the white/light card). */
+        border: 1px solid #242424 !important;
         box-shadow: 0 12px 40px rgba(0, 0, 0, .55) !important;
         padding: 1.75em 1.5em !important;
-        border-top: 6px solid var(--brand-orange) !important;
     }
 
     .login-ui .login-dialog .logo::after {
