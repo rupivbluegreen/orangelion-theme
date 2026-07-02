@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Multi-language product name. `APP_NAME` is written into an `APP.NAME` override for every locale in `LOCALES` (default `en`); example locale files added for Dutch and German (`translations/nl.json.example`, `translations/de.json.example`). (#8)
 - Automatic dark-mode variant via a `@media (prefers-color-scheme: dark)` block: dark page and card backgrounds, light text, and orange shades tuned for dark surfaces, all meeting WCAG AA. A custom `BRAND_COLOR` recolours the light theme only. (#3)
 - WCAG contrast audit documented in `docs/ACCESSIBILITY.md`, with the measured ratio and pass/fail for every foreground/background pair in both the light and dark themes. (#6)
+- Guacamole version compatibility matrix in the README, recording the CI-verified load result per version (1.5.5, 1.6.0), an explanation of the `guacamoleVersion "*"` gate, and how to add a version. (#7)
 
 ### Changed
 

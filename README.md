@@ -123,7 +123,25 @@ After any change, rebuild the jar with `build.sh` (output: `dist/guacamole-theme
 
 ## Compatibility
 
-The manifest declares `guacamoleVersion` `"*"`, and the theme has been tested on Guacamole 1.5.5 and 1.6.0.
+OrangeLion is CSS-only and declares `guacamoleVersion` `"*"`. The build workflow smoke-tests that the extension loads on each version below.
+
+| Guacamole | Extension loads | Visual surfaces | Notes |
+| --- | --- | --- | --- |
+| 1.5.5 | ✅ PASS (CI) | Expected | Smoke-tested in CI on every push/PR. |
+| 1.6.0 | ✅ PASS (CI) | Expected | Smoke-tested in CI; this version's jar is the uploaded build artifact. |
+
+- **PASS (CI)** — the [build workflow](.github/workflows/build.yml) builds the jar, boots `guacamole/guacamole:<version>`, and asserts `Extension "OrangeLion Theme" (orangelion) loaded`. This proves the extension is accepted and loads.
+- **Expected** — because the theme is pure CSS layered on the default theme, the login card, lion mark, menu/header bars, connection list, and admin Settings render once it loads. CI does not do pixel inspection, so these cells are *expected*, not visually verified.
+
+### What `guacamoleVersion: "*"` means
+
+Guacamole reads `guacamoleVersion` from the manifest as the version the extension was built for and uses it as a load-time gate: if an extension declares a version **newer** than the running server, Guacamole refuses to load it. The wildcard `"*"` opts out of that check, so OrangeLion never claims to need a newer server than the one it is dropped into — which maximises compatibility. That is safe here because the extension ships only CSS (plus icons and optional translations) and calls no version-specific APIs. Older releases such as 1.4 may work but are untested.
+
+### Adding a version to the matrix
+
+1. Add the tag (for example `"1.6.1"`) to `strategy.matrix.guac` in [.github/workflows/build.yml](.github/workflows/build.yml).
+2. When that CI job is green, add a row here marked **PASS (CI)**.
+3. Only mark a visual surface **Verified** if it was actually inspected on that version.
 
 ## FAQ
 
