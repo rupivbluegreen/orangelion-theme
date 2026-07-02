@@ -197,6 +197,10 @@ def transform_css(root, cfg):
                      lambda m: m.group(1) + dark + m.group(2), css)
         css = re.sub(r"(--brand-orange-darker:\s*)#[0-9A-Fa-f]{3,8}(;)",
                      lambda m: m.group(1) + darker + m.group(2), css)
+        # The deep hover shade has no env knob; derive it from the primary.
+        deep = derive("#A84300", prim)
+        css = re.sub(r"(--brand-orange-deep:\s*)#[0-9A-Fa-f]{3,8}(;)",
+                     lambda m: m.group(1) + deep + m.group(2), css)
 
         # Literal accents not behind the variables.
         css = re.sub(r"#FF6200\b", prim, css, flags=re.IGNORECASE)

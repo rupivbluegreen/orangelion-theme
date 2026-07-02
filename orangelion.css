@@ -11,9 +11,10 @@
     --brand-orange:        #FF6200;
     --brand-orange-dark:   #E15700;
     --brand-orange-darker: #C24E00;
+    --brand-orange-deep:   #A84300;
     --brand-charcoal:      #333333;
     --brand-grey:          #767676;
-    --brand-border:        #D9D9D9;
+    --brand-border:        #8C8C8C;
     --brand-white:         #FFFFFF;
     --brand-page:          #FFFFFF;
 }
@@ -105,8 +106,8 @@ a:active {
 input[type=submit],
 button.primary,
 .button.primary {
-    background: var(--brand-orange) !important;
-    background-color: var(--brand-orange) !important;
+    background: var(--brand-orange-darker) !important;
+    background-color: var(--brand-orange-darker) !important;
     color: var(--brand-white) !important;
     border: 1px solid var(--brand-orange-dark) !important;
     text-shadow: none !important;
@@ -117,8 +118,8 @@ button.primary,
 input[type=submit]:hover,
 button.primary:hover,
 .button.primary:hover {
-    background: var(--brand-orange-dark) !important;
-    background-color: var(--brand-orange-dark) !important;
+    background: var(--brand-orange-deep) !important;
+    background-color: var(--brand-orange-deep) !important;
     border-color: var(--brand-orange-darker) !important;
 }
 
@@ -134,7 +135,7 @@ button {
 
 .button:hover,
 button:hover {
-    background: var(--brand-orange) !important;
+    background: var(--brand-orange-darker) !important;
     color: var(--brand-white) !important;
 }
 
@@ -152,7 +153,7 @@ button:hover {
 #guac-menu,
 .menu .header,
 .header {
-    background: var(--brand-orange) !important;
+    background: var(--brand-orange-darker) !important;
     color: var(--brand-white) !important;
     text-shadow: none !important;
 }
@@ -170,7 +171,7 @@ button:hover {
 #guac-menu button {
     background: transparent !important;
     color: var(--brand-white) !important;
-    border: 2px solid rgba(255, 255, 255, .85) !important;
+    border: 2px solid var(--brand-white) !important;
 }
 
 .menu .button:hover,
@@ -178,7 +179,7 @@ button:hover {
 #guac-menu .button:hover,
 #guac-menu button:hover {
     background: var(--brand-white) !important;
-    color: var(--brand-orange) !important;
+    color: var(--brand-orange-darker) !important;
 }
 
 /* ----------------------------------------------- Connection list / home -- */
@@ -254,7 +255,7 @@ button.primary:disabled,
     background: #F2B48A !important;
     background-color: #F2B48A !important;
     border-color: #E0A070 !important;
-    color: var(--brand-white) !important;
+    color: var(--brand-charcoal) !important;
     box-shadow: none !important;
     cursor: not-allowed !important;
 }

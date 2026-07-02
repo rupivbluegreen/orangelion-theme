@@ -13,6 +13,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Neutral, theme-only build variant. `VARIANT=neutral ./build.sh` emits `dist/guacamole-theme-orangelion-neutral.jar` with just the colour palette — no login mark, product-name override, or bundled icons — so Guacamole keeps its own logo and product name. (#9)
 - Optional logo image. `LOGO=path/to/logo.svg ./build.sh` packs an SVG/PNG into the jar, exposes it as a manifest resource, and shows it on the login card in place of the wordmark. (#2)
 - Multi-language product name. `APP_NAME` is written into an `APP.NAME` override for every locale in `LOCALES` (default `en`); example locale files added for Dutch and German (`translations/nl.json.example`, `translations/de.json.example`). (#8)
+- WCAG contrast audit documented in `docs/ACCESSIBILITY.md`, with the measured ratio and pass/fail for every foreground/background pair in the theme. (#6)
+
+### Changed
+
+- Accessibility fixes so normal-size text meets WCAG AA (4.5:1) and UI/focus meet 3:1. White-on-orange surfaces move from `#FF6200` (3.00:1 with white) to the accessible `#C24E00` (4.79:1): primary buttons, the menu/header bars, and secondary/menu hover states. Primary-button hover uses the new `#A84300` (6.06:1); the input border darkens from `#D9D9D9` (1.41:1) to `#8C8C8C` (3.36:1); menu outline-button borders become solid white (4.79:1 on the darker bar); and disabled-button labels switch to charcoal for legibility. The bright `#FF6200` is kept for the login backdrop, the lion mark, and accent borders. (#6)
 
 ## [1.2.0] - 2026-07-01
 

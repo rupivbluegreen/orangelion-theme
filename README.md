@@ -52,7 +52,7 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 - Configurable through CSS variables at the top of the stylesheet.
 - Optional product-name rename on the login page via a translation override.
 - Custom browser-tab favicon and app icon (an orange lion mark).
-- Accessible by default: WCAG AA text contrast, a visible keyboard focus ring, and brand-coloured form controls.
+- Accessible by default: [WCAG AA contrast](docs/ACCESSIBILITY.md) across text, borders, and focus indicators, a visible keyboard focus ring, and brand-coloured form controls.
 
 ## Install
 
@@ -105,13 +105,14 @@ You can also hand-edit the CSS variables in the `:root` block at the top of `ora
 
 | Variable | Default | Controls |
 | --- | --- | --- |
-| `--brand-orange` | `#FF6200` | Primary accent: fills, borders, accents |
-| `--brand-orange-dark` | `#E15700` | Button hover |
-| `--brand-orange-darker` | `#C24E00` | Accessible text orange (4.79:1 on white) |
+| `--brand-orange` | `#FF6200` | Bright brand accent: login backdrop, mark, borders |
+| `--brand-orange-dark` | `#E15700` | Primary-button border edge |
+| `--brand-orange-darker` | `#C24E00` | Accessible orange: text + white-on fills (4.79:1) |
+| `--brand-orange-deep` | `#A84300` | Deep hover fill (6.06:1 on white) |
 | `--brand-charcoal` | `#333333` | Body text |
 | `--brand-grey` | `#767676` | Secondary text |
-| `--brand-border` | `#D9D9D9` | Input borders |
-| `--brand-white` | `#FFFFFF` | Cards |
+| `--brand-border` | `#8C8C8C` | Input borders (3.36:1 on white) |
+| `--brand-white` | `#FFFFFF` | Cards / text on orange |
 | `--brand-page` | `#FFFFFF` | Page background |
 
 Worked example, recolour to blue: run `BRAND_COLOR=#1565C0 ./build.sh`, or set `--brand-orange`, `--brand-orange-dark`, and `--brand-orange-darker` to your blue shades in the `:root` block by hand and rebuild.
