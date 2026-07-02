@@ -204,7 +204,11 @@ a.home-connection,
 
 .connection:hover,
 a.home-connection:hover,
-.connection-group .caption:hover {
+.connection-group .caption:hover,
+/* The base theme paints the row hover on the caption
+   (`.list-item:not(.selected) .caption:hover { background:#cda }`), a pale
+   khaki that is off-brand; override it with a subtle orange tint. */
+.list-item:not(.selected) .caption:hover {
     background: rgba(255, 98, 0, .10) !important;
 }
 
@@ -471,7 +475,12 @@ input[type=range] {
 
     .connection:hover,
     a.home-connection:hover,
-    .connection-group .caption:hover {
+    .connection-group .caption:hover,
+    /* Override the base pale-khaki caption hover (`#cda`) which is both
+       off-brand and low-contrast under the light dark-mode label text. A
+       translucent orange over the dark surface stays dark enough to keep the
+       light label readable. */
+    .list-item:not(.selected) .caption:hover {
         background: rgba(255, 138, 61, .20) !important;
     }
 
