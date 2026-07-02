@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Nothing yet. Planned changes will be listed here before the next release.
+
+## [1.4.0] - 2026-07-02
+
 ### Fixed
 
 - Login card top edge. Removed the 6px orange `border-top` accent stripe from the login card in both the light and dark rules, and gave the card a card-coloured 1px border so the orange page backdrop can no longer bleed a hairline anti-aliasing seam at the card's rounded edge. The card top is now clean in both light and dark mode. (#24)
@@ -14,7 +18,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Connection-list row hover. The base theme paints the row hover on the caption (`.list-item:not(.selected) .caption:hover { background: #cda }`), an off-brand khaki that the theme's row-level hover rule never overrode; in dark mode the light label was also low-contrast on it. The hover rule now includes that selector in both schemes, so the row hover is an orange brand tint that stays dark enough in dark mode to keep the label and icon legible. (#28)
 - Settings tab hover. The Settings section tabs (Active Sessions/History/Users/Groups/Connections/Preferences) had no visible hover: the base theme only gives them a pale khaki hover (`.page-tabs .page-list li a[href]:hover, .section-tabs li a:hover { background-color: #cda }`), which the theme never targeted, so in dark mode the light-orange label sat on the khaki and the hover read as invisible/off-brand. The theme now styles that hover in both schemes with an orange tint (subtle over white, translucent over the dark surface) and gives the current tab an orange label. (#30)
 - Broad dark-mode surface audit. A systematic pass found ~50 more base surfaces where Guacamole hardcodes a colour on a child element or interaction state the theme never targeted, so the theme lightened the text while the surface stayed light (invisible or off-brand in dark mode). Added palette-aligned overrides across: generic text inputs/textareas, selected rows (`.list-item.selected`), Active-Sessions row hover, file-browser focus, sortable-table headers/sort arrows/grid, pager current-page marker, disabled rows, `.button.danger` (kept a dedicated red), the range-slider track, dropdown nav menus, `#connection-warning`, the location-chooser and file-transfer/clipboard panels, notification progress/error, share links, and in-session controls (tile focus, zoom, breadcrumb, drag-upload, user-count). Light mode is unchanged except where a surface was off-brand in both. (#32)
-- Dark-mode audit, second pass. Fixed the remaining surfaces a follow-up audit surfaced: the logout / auto-login-rejected modal and the SSO redirect page no longer flash a white full-screen backdrop; the top-right user menu (Home/Settings/Log out) now shows white icons on the dark panel (dark on the light panel) with neutral labels and an orange hover, matching the stock theme's clarity; and the read-only notice banner, related-objects chips, password show/hide toggle, connection-import drop zone, attribute-group headers, clipboard "contents hidden" hint, colour-picker active tab, and terminal colour-scheme toggles are brought onto the palette. (#34)
+- Dark-mode audit, second pass. Fixed the remaining surfaces a follow-up audit surfaced: the logout / auto-login-rejected modal and the SSO redirect page no longer flash a white full-screen backdrop; the top-right user menu (Home/Settings/Log out) now shows white icons on the dark panel (dark on the light panel) with neutral labels and an orange hover, matching the stock theme's clarity; and the read-only notice banner, related-objects chips, password show/hide toggle, connection-import drop zone, attribute-group headers, clipboard "contents hidden" hint, colour-picker active tab, terminal colour-scheme toggles, native `<select>` dropdowns (Protocol, Encryption, language, timezone), and the Settings-table user/group icons are brought onto the palette. Also fixed a latent bug where the connection-list/home page-background used the `background` shorthand, which reset the header user-menu links' icon sizing and made those icons render huge once they became visible. (#34)
+
+### Changed
+
+- The GitHub Pages landing site now showcases the automatic dark mode (a dark-mode login screenshot in the gallery and updated dark-mode copy reflecting whole-app coverage).
 
 ## [1.3.0] - 2026-07-02
 
