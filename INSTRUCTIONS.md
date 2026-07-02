@@ -81,14 +81,15 @@ restricted-SCC notes and ready-to-adapt manifests, see
 You can restyle OrangeLion without editing any CSS. `build.sh` reads options
 from environment variables, or from a `theme.config` file of `KEY=VALUE` lines
 (copy `theme.config.example` to `theme.config`). Environment variables win over
-the file, and with no options set `./build.sh` reproduces the standard theme
-byte for byte.
+the file. With no options set, `./build.sh` reproduces the standard theme
+(identical rendering; the manifest is byte-for-byte and the CSS differs only by
+stripped build-time marker comments).
 
 | Option | Default | Effect |
 | --- | --- | --- |
 | `VARIANT` | `branded` | `branded` = palette + lion login mark + icons. `neutral` = palette only (see below). |
 | `BRAND_COLOR` | `#FF6200` | Primary accent. The darker shades are derived from it automatically. |
-| `BRAND_COLOR_DARK` | derived | Hover / darker fill shade. |
+| `BRAND_COLOR_DARK` | derived | Darker shade; primary-button border edge. |
 | `BRAND_COLOR_DARKER` | derived | Accessible text orange (links, outline-button labels). |
 | `WORDMARK` | lion emoji | Text or emoji shown on the white login card. |
 | `LOGO` | — | Path to an SVG/PNG shown instead of the wordmark (see below). |

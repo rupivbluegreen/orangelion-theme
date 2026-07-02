@@ -5,8 +5,9 @@
 # A .jar is a .zip; the manifest + CSS (+ icons and any assets) are packed at
 # the archive root. Re-run after editing the manifest, CSS, or configuration.
 #
-# With no configuration this reproduces the standard branded theme byte for
-# byte. Configure the build with environment variables or a theme.config file
+# With no configuration this reproduces the standard branded theme (identical
+# rendering; the manifest byte-for-byte, the CSS apart from stripped build-time
+# marker comments). Configure the build with environment variables or theme.config
 # (see theme.config.example). Examples:
 #
 #   ./build.sh                                   # standard branded theme

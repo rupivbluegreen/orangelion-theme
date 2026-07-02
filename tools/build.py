@@ -6,9 +6,11 @@ Invoked by ``build.sh``. Reads configuration from a ``theme.config`` file
 a ``.jar`` (a ``.zip``) containing the manifest, the optionally-templated CSS,
 icons, and any assets, at the archive root.
 
-Design invariant: with no configuration the output ``orangelion.css`` and
-``guac-manifest.json`` are byte-for-byte identical to the committed sources, so
-the default build always reproduces the standard branded theme exactly.
+Design invariant: with no configuration the default build reproduces the
+standard branded theme exactly. ``guac-manifest.json`` is byte-for-byte
+identical to the committed source; ``orangelion.css`` is identical apart from
+the build-time ``/* @orangelion:... */`` marker comments, which are stripped
+(nothing that renders changes).
 
 Configuration keys (all optional):
 
@@ -105,6 +107,18 @@ def load_config(root):
         env = os.environ.get(key)
         if env:
             cfg[key] = env
+    # Normalise and validate colour options: empty means "use the default",
+    # anything else must be a #RGB / #RRGGBB hex value (this also rejects
+    # trailing junk such as an inline comment).
+    for key in ("BRAND_COLOR", "BRAND_COLOR_DARK", "BRAND_COLOR_DARKER"):
+        val = cfg[key].strip()
+        if not val:
+            cfg[key] = DEFAULTS[key]
+        elif re.fullmatch(r"#(?:[0-9A-Fa-f]{3}|[0-9A-Fa-f]{6})", val):
+            cfg[key] = val
+        else:
+            sys.exit("build: invalid {} {!r} (expected a hex colour like "
+                     "#FF6200)".format(key, cfg[key]))
     return cfg
 
 
@@ -163,7 +177,8 @@ def drop_branding(lines):
 
 
 def css_escape(text):
-    return text.replace("\\", "\\\\").replace('"', '\\"')
+    text = text.replace("\\", "\\\\").replace('"', '\\"')
+    return text.replace("\r", " ").replace("\n", " ")
 
 
 def _recolour(css, prim, dark, darker):
@@ -189,7 +204,8 @@ def _recolour(css, prim, dark, darker):
 
 def transform_css(root, cfg):
     """Return (css_text, logo_asset) where logo_asset is (src_path, arcname) or
-    None. With no overrides css_text equals the committed CSS byte-for-byte."""
+    None. With no overrides css_text equals the committed CSS with the
+    build-time marker comments removed (rendering is unchanged)."""
     with open(os.path.join(root, "orangelion.css"), encoding="utf-8") as fh:
         lines = fh.readlines()
 
@@ -231,8 +247,10 @@ def transform_css(root, cfg):
         logo_asset = (logo_path, arc)
         css += LOGO_CSS.format(url=arc)
     elif cfg["WORDMARK"] and not neutral:
-        css = re.sub(r'content:\s*"\\1F981";',
-                     'content: "' + css_escape(cfg["WORDMARK"]) + '";', css, count=1)
+        # Use a function replacement so re.sub does not re-process backslashes
+        # in the (already CSS-escaped) wordmark.
+        mark = 'content: "' + css_escape(cfg["WORDMARK"]) + '";'
+        css = re.sub(r'content:\s*"\\1F981";', lambda _: mark, css, count=1)
 
     return css, logo_asset
 
@@ -248,7 +266,7 @@ def build_translations(root, cfg):
     if cfg["APP_NAME"]:
         payload = {"APP": {"NAME": cfg["APP_NAME"]}}
         blob = (json.dumps(payload, indent=4, ensure_ascii=False) + "\n").encode("utf-8")
-        for loc in cfg["LOCALES"].split():
+        for loc in dict.fromkeys(cfg["LOCALES"].split()):
             arc = "translations/{}.json".format(loc)
             files.append((arc, blob))
             seen.add(arc)
