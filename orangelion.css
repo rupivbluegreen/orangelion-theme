@@ -985,4 +985,25 @@ input[type=range]::-ms-fill-upper {
         color: var(--brand-charcoal) !important;
         background: rgba(255, 255, 255, .08) !important;
     }
+
+    /* Native <select> dropdowns (Protocol, Encryption, Display language,
+       Timezone, ...): base leaves them the browser-default white; give them the
+       dark surface so they match the themed text inputs. */
+    select {
+        background-color: #303030 !important;
+        color: var(--brand-charcoal) !important;
+        border: 1px solid var(--brand-border) !important;
+    }
+    select option {
+        background-color: #303030 !important;
+        color: var(--brand-charcoal) !important;
+    }
+
+    /* User / group glyphs in the Settings tables (and the New-User/-Group
+       buttons): dark monochrome SVGs that vanish on the dark surface; invert
+       them to light, matching how the connection-list icons are handled. */
+    .icon.user,
+    .icon.user-group {
+        filter: invert(1) !important;
+    }
 }
