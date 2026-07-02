@@ -291,6 +291,128 @@ input[type=range] {
     accent-color: var(--brand-orange) !important;
 }
 
+/* ===========================================================================
+ * Additional base-surface overrides.
+ *
+ * Guacamole hardcodes colours on many child elements and interaction states
+ * that the core theme above never targets (selected rows, table/session
+ * hovers, danger buttons, dropdown menus, clipboard, sliders, in-session
+ * controls, ...). These bring those surfaces onto the palette. Values here
+ * apply in BOTH schemes (var()-driven, or valid on light and dark); the
+ * scheme-specific tints are re-tuned in the dark block below.
+ * ======================================================================== */
+
+/* Selected list row (home list + Settings tables): base pale-green #deb. */
+.list-item.selected {
+    background: rgba(255, 98, 0, .14) !important;
+}
+
+/* Active Sessions row hover (a <tr>, not a .caption): base khaki #cda. */
+.settings table.session-list tr.session:hover {
+    background: rgba(255, 98, 0, .10) !important;
+}
+
+/* Destructive buttons keep a red identity (the generic button rule above
+   would otherwise strip base #a43). */
+.button.danger,
+button.danger,
+a.button.danger,
+.menu-dropdown .menu-contents li a.danger {
+    background: #B23A2E !important;
+    background-color: #B23A2E !important;
+    color: var(--brand-white) !important;
+    border: 1px solid #8F2A20 !important;
+}
+.button.danger:hover,
+button.danger:hover,
+a.button.danger:hover {
+    background: #9A3227 !important;
+    background-color: #9A3227 !important;
+}
+
+/* Range slider track: base stock blue #5af (accent-color can't recolour a
+   custom track). Each vendor pseudo-element must be its own rule — a mixed
+   vendor list is invalid and would drop the whole rule. */
+input[type=range]::-webkit-slider-runnable-track {
+    background: var(--brand-orange) !important;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: var(--brand-orange) !important;
+}
+input[type=range]::-moz-range-track {
+    background: var(--brand-orange) !important;
+}
+input[type=range]::-ms-fill-lower {
+    background: var(--brand-orange) !important;
+}
+input[type=range]::-ms-fill-upper {
+    background: var(--brand-orange) !important;
+}
+
+/* Top-right dropdown nav menus (Home / Settings / Logout, connection select):
+   base pale-khaki #cda hover. */
+.menu-dropdown .menu-contents li a:hover {
+    background-color: rgba(255, 98, 0, .12) !important;
+    color: var(--brand-orange-darker) !important;
+}
+
+/* Clipboard editor sits in the orange drawer (white menu text); its base white
+   fill hides the contents. Give it its own surface + text colour. */
+.clipboard,
+.clipboard-service-target {
+    background: var(--brand-white) !important;
+    color: var(--brand-charcoal) !important;
+    border: 1px solid var(--brand-border) !important;
+}
+
+/* File-browser (SFTP) keyboard-focused row: base khaki wash + invisible black
+   dotted border. */
+.list-item.focused .caption {
+    background: rgba(255, 98, 0, .15) !important;
+    border: 1px dotted var(--brand-orange) !important;
+}
+
+/* In-session zoom controls (divs, not buttons): base khaki + black border. */
+.client-zoom .client-zoom-in:hover,
+.client-zoom .client-zoom-out:hover {
+    background: rgba(255, 98, 0, .15) !important;
+    border-color: var(--brand-orange) !important;
+}
+
+/* File-browser breadcrumb hover: base khaki #cda. */
+#filesystem-menu .header.breadcrumbs .breadcrumb:hover {
+    background-color: rgba(255, 98, 0, .15) !important;
+}
+
+/* Share-links panel in the orange drawer: base bg makes orange-on-orange URLs. */
+#guac-menu #share-links {
+    background: rgba(0, 0, 0, .20) !important;
+}
+#guac-menu #share-links a[href] {
+    color: var(--brand-white) !important;
+}
+
+/* Focused tile header in the multi-connection grid: base stock blue #3161a9. */
+.tiled-client-grid .client-tile.focused .client-tile-header {
+    background-color: var(--brand-orange-darker) !important;
+    color: var(--brand-white) !important;
+}
+
+/* Drag-to-upload display tint: base stock blue #3161a9. */
+.client .drop-pending .display {
+    background: var(--brand-orange-darker) !important;
+}
+
+/* Shared-session user-count badge: base off-brand teal #055. */
+.tiled-client-grid .client-user-count {
+    background: var(--brand-orange-darker) !important;
+}
+
+/* Savable file-transfer filename link: base stock blue #00f. */
+.transfer.savable .filename {
+    color: var(--brand-orange-darker) !important;
+}
+
 /* @orangelion:darkmode */
 /* ============================================================================
  * OrangeLion — Dark Mode variant.
@@ -590,5 +712,174 @@ input[type=range] {
     input[type=radio],
     input[type=range] {
         accent-color: var(--brand-orange) !important;
+    }
+
+    /* ----------------------------------------- Additional dark overrides --- */
+    /* Dark re-tunes for the base-surface overrides added to the light section
+       above, plus dark-only surfaces (light fills that only break on dark). */
+
+    /* Generic text fields / textareas (Settings, connection/user forms): base
+       white fill would show the light dark-mode text on white. */
+    div.location,
+    input[type=email],
+    input[type=number],
+    input[type=password],
+    input[type=text],
+    textarea {
+        background: #303030 !important;
+        color: var(--brand-charcoal) !important;
+        border: 1px solid var(--brand-border) !important;
+    }
+    div.location:focus,
+    input[type=email]:focus,
+    input[type=number]:focus,
+    input[type=password]:focus,
+    input[type=text]:focus,
+    textarea:focus {
+        border-color: var(--brand-orange-darker) !important;
+    }
+
+    .list-item.selected {
+        background: rgba(255, 138, 61, .24) !important;
+    }
+
+    .settings table.session-list tr.session:hover {
+        background: rgba(255, 138, 61, .20) !important;
+    }
+
+    .list-item.focused .caption {
+        background: rgba(255, 138, 61, .20) !important;
+        border: 1px dotted var(--brand-orange) !important;
+    }
+
+    .client-zoom .client-zoom-in:hover,
+    .client-zoom .client-zoom-out:hover {
+        background: rgba(255, 138, 61, .20) !important;
+        border-color: var(--brand-orange) !important;
+    }
+
+    #filesystem-menu .header.breadcrumbs .breadcrumb:hover {
+        background-color: rgba(255, 138, 61, .20) !important;
+    }
+
+    /* Dropdown nav menus: dark panel, legible items, orange hover. */
+    .menu-dropdown .menu-contents {
+        background: #242424 !important;
+        border-color: var(--brand-border) !important;
+    }
+    .menu-dropdown .menu-contents li a {
+        color: var(--brand-charcoal) !important;
+    }
+    .menu-dropdown .menu-contents li a:hover {
+        background-color: rgba(255, 138, 61, .20) !important;
+        color: var(--brand-orange-darker) !important;
+    }
+
+    /* Clipboard editor: dark fill in dark mode. */
+    .clipboard,
+    .clipboard-service-target {
+        background: #303030 !important;
+    }
+
+    /* Destructive buttons: lighter red with dark text for dark surfaces. */
+    .button.danger,
+    button.danger,
+    a.button.danger,
+    .menu-dropdown .menu-contents li a.danger {
+        background: #E06A5C !important;
+        background-color: #E06A5C !important;
+        color: #1A1A1A !important;
+        border-color: #C0483C !important;
+    }
+    .button.danger:hover,
+    button.danger:hover,
+    a.button.danger:hover {
+        background: #EC8177 !important;
+        background-color: #EC8177 !important;
+    }
+
+    /* Connection-warning toast: base cream #ffe. */
+    #connection-warning {
+        background: #3A2E12 !important;
+        color: var(--brand-charcoal) !important;
+        border-left-color: var(--brand-orange) !important;
+    }
+
+    /* File-transfer dialog: base white panel. */
+    .transfer-manager {
+        background: #242424 !important;
+        color: var(--brand-charcoal) !important;
+    }
+    .transfer.error {
+        background: #3A1F1F !important;
+    }
+
+    /* Location-chooser (parent-group picker) dropdown: base white. */
+    .location-chooser .dropdown {
+        background: #242424 !important;
+        border-color: var(--brand-border) !important;
+    }
+
+    /* Terminal custom colour-scheme box: base light #eee. */
+    .terminal-color-scheme-field .custom-color-scheme {
+        background: #242424 !important;
+        border: 1px solid var(--brand-border) !important;
+    }
+
+    /* Sortable table header: dark sort-arrow SVG, faint shading, bright grid. */
+    table.sorted th.sort-primary:after {
+        filter: invert(1) !important;
+    }
+    table.sorted th {
+        background: rgba(255, 255, 255, .08) !important;
+    }
+    table.sorted td,
+    table.sorted th {
+        border-color: #4A4A4A !important;
+    }
+
+    /* Disabled user / group rows: base color:grey is below AA on dark. */
+    table.user-list tr.user.disabled,
+    table.user-list tr.user.disabled td a[href],
+    table.user-group-list tr.user-group.disabled,
+    table.user-group-list tr.user-group.disabled td a[href] {
+        color: var(--brand-grey) !important;
+    }
+
+    /* Pager current-page marker: base translucent black vanishes on dark. */
+    .pager .set-page.current {
+        background: rgba(255, 138, 61, .20) !important;
+        border-color: var(--brand-orange) !important;
+    }
+
+    /* File-upload dialog border: base translucent black. */
+    .file-upload-container {
+        border: 1px solid var(--brand-border) !important;
+    }
+
+    /* Error text: plain red is marginal on dark. */
+    .import .errors .error-message,
+    .file-upload-container .file-error {
+        color: #FF8A80 !important;
+    }
+
+    /* Notification progress bar: base light-grey track + text. */
+    .notification .progress {
+        background-color: #3A3A3A !important;
+    }
+    .notification .progress .text {
+        color: var(--brand-charcoal) !important;
+    }
+
+    /* Error notification keeps a red tint (the dark .notification background
+       would otherwise flatten it). */
+    .notification.error {
+        background: #4A1B1B !important;
+    }
+
+    /* Current Settings tab highlight: base rgba(0,0,0,.3) invisible on dark. */
+    .page-tabs .page-list li a[href].current,
+    .section-tabs li a.current {
+        background: rgba(255, 138, 61, .18) !important;
     }
 }
