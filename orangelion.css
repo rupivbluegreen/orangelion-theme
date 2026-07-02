@@ -413,6 +413,33 @@ input[type=range]::-ms-fill-upper {
     color: var(--brand-orange-darker) !important;
 }
 
+/* --- Second-pass overrides (more base surfaces) --- */
+
+/* Top-right user menu (Home / Settings / Log out) and other dropdown menus:
+   keep the item labels neutral. The global orange link colour otherwise tints
+   this menu and reads worse than the stock theme; the hover still goes orange. */
+.menu-dropdown .menu-contents li a {
+    color: var(--brand-charcoal) !important;
+}
+
+/* Connection-import drop zone, drag-over state: base stock blue #3161a9. */
+.file-upload-container .drop-target.drop-pending {
+    background: var(--brand-orange-darker) !important;
+}
+
+/* Terminal colour-scheme detail toggles: base #00f (not an <a>, so the global
+   link rule misses them). */
+.terminal-color-scheme-field .custom-color-scheme-hide-details,
+.terminal-color-scheme-field .custom-color-scheme-show-details {
+    color: var(--brand-orange-darker) !important;
+}
+
+/* Colour-picker (Pickr) active type tab: base Google-blue #4285f4. */
+.pcr-app .pcr-interaction .pcr-type.active {
+    background: var(--brand-orange) !important;
+    color: var(--brand-white) !important;
+}
+
 /* @orangelion:darkmode */
 /* ============================================================================
  * OrangeLion — Dark Mode variant.
@@ -881,5 +908,77 @@ input[type=range]::-ms-fill-upper {
     .page-tabs .page-list li a[href].current,
     .section-tabs li a.current {
         background: rgba(255, 138, 61, .18) !important;
+    }
+
+    /* ------------------------------------- Second-pass dark overrides ------ */
+
+    /* Logout / auto-login-rejected modal: base full-viewport white backdrop
+       flashed a white screen on every logout in dark mode. */
+    .logged-out-modal guac-modal,
+    .automatic-login-rejected-modal guac-modal {
+        background: var(--brand-page) !important;
+    }
+
+    /* Top-right user-menu item icons: base uses dark -dark.svg glyphs that
+       vanish on the dark panel; swap for the white variants. */
+    .user-menu .menu-dropdown .menu-contents li a[href="#/"] {
+        background-image: url(images/action-icons/guac-home.svg) !important;
+    }
+    .user-menu .menu-dropdown .menu-contents li a[href^="#/settings"] {
+        background-image: url(images/action-icons/guac-config.svg) !important;
+    }
+    .user-menu .menu-dropdown .menu-contents li a.logout {
+        background-image: url(images/action-icons/guac-logout.svg) !important;
+    }
+
+    /* SSO/OIDC/CAS redirect landing page: base full-viewport white with light
+       (invisible) text. */
+    .redirect-field-container {
+        background: var(--brand-page) !important;
+        color: var(--brand-charcoal) !important;
+    }
+
+    /* Read-only notice banner (viewing an un-editable user/group): base amber
+       #fda with light inherited text. */
+    .manage-user .notice.read-only,
+    .manage-user-group .notice.read-only {
+        background: #3A2E12 !important;
+        color: var(--brand-charcoal) !important;
+        border-color: var(--brand-border) !important;
+    }
+
+    /* Related-objects chips: base near-white #f5f5f5. */
+    .related-objects .abbreviated-related-objects ul li {
+        background: #303030 !important;
+        border-color: var(--brand-border) !important;
+    }
+
+    /* Password show/hide eye toggle: dark monochrome SVG on the dark input. */
+    .form-field .password-field .icon.toggle-password {
+        filter: invert(1) !important;
+        opacity: .8 !important;
+    }
+
+    /* Connection-import drop zone: base near-white fill + invisible black border. */
+    .file-upload-container .drop-target {
+        background: #303030 !important;
+        border-color: var(--brand-border) !important;
+    }
+    .file-upload-container .drop-target.file-present {
+        background: rgba(255, 255, 255, .10) !important;
+    }
+
+    /* Form section headers (attribute groups): base translucent-black banding. */
+    .attributes .form h3 {
+        background: rgba(255, 255, 255, .05) !important;
+        border-top-color: #4A4A4A !important;
+        border-bottom-color: #4A4A4A !important;
+        box-shadow: none !important;
+    }
+
+    /* Clipboard "contents hidden" hint: base #888 on the dark editor. */
+    .clipboard-editor .clipboard-contents-hidden-hint .clipboard-contents-hidden-hint-text {
+        color: var(--brand-charcoal) !important;
+        background: rgba(255, 255, 255, .08) !important;
     }
 }
