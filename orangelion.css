@@ -636,9 +636,12 @@ input[type=range]::-ms-fill-upper {
         cursor: pointer !important;
     }
 
+    /* Current Settings tab: orange label + a visible highlight (base
+       rgba(0,0,0,.3) is invisible on dark). */
     .page-tabs .page-list li a[href].current,
     .section-tabs li a.current {
         color: var(--brand-orange-darker) !important;
+        background: rgba(255, 138, 61, .18) !important;
     }
 
     /* --------------------------------------------- Connection list / home - */
@@ -906,12 +909,6 @@ input[type=range]::-ms-fill-upper {
        would otherwise flatten it). */
     .notification.error {
         background: #4A1B1B !important;
-    }
-
-    /* Current Settings tab highlight: base rgba(0,0,0,.3) invisible on dark. */
-    .page-tabs .page-list li a[href].current,
-    .section-tabs li a.current {
-        background: rgba(255, 138, 61, .18) !important;
     }
 
     /* ------------------------------------- Second-pass dark overrides ------ */
