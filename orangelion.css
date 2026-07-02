@@ -481,6 +481,27 @@ input[type=range] {
         color: var(--brand-charcoal) !important;
     }
 
+    /* Row LABELS. The base theme sets `.list-item .name { color: #000 }`
+       directly on the label element, so a colour inherited from the row/link
+       cannot win (a direct declaration beats an inherited one). Recolour the
+       label itself, or connection/group/user names stay black on the dark
+       surface. Covers the home connection list and the Settings list tables. */
+    .list-item .name {
+        color: var(--brand-charcoal) !important;
+    }
+    .list-item .usage {
+        color: var(--brand-grey) !important;
+    }
+
+    /* Row ICONS are dark monochrome SVG background images (guac-text.svg,
+       guac-monitor.svg, folder/expand carets, ...), so `color` can't touch
+       them. Invert them to light so they read on the dark surface. */
+    .list-item .icon,
+    .connection .icon,
+    .connection-group .icon {
+        filter: invert(1) !important;
+    }
+
     /* Notifications / dialogs -> dark surface, light text, orange accent. */
     .notification {
         background: #242424 !important;
