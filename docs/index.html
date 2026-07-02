@@ -46,8 +46,8 @@
   .nav-links a:hover{color:var(--orange-deep)}
   .btn{display:inline-flex; align-items:center; gap:9px; font-weight:700; font-size:15px;
     padding:12px 20px; border-radius:999px; border:2px solid transparent; cursor:pointer; transition:.18s ease}
-  .btn-primary{background:var(--orange); color:#fff; box-shadow:0 8px 22px -8px rgba(255,98,0,.7)}
-  .btn-primary:hover{background:var(--orange-dark); transform:translateY(-2px)}
+  .btn-primary{background:var(--orange-deep); color:#fff; box-shadow:0 8px 22px -8px rgba(255,98,0,.5)}
+  .btn-primary:hover{background:#A84300; transform:translateY(-2px)}
   .btn-ghost{background:transparent; color:var(--ink); border-color:var(--line)}
   .btn-ghost:hover{border-color:var(--orange); color:var(--orange-deep); transform:translateY(-2px)}
   @media(max-width:760px){.nav-links a:not(.btn){display:none}}
@@ -177,8 +177,8 @@
         </div>
         <div class="trust an">
           <span>MIT licensed</span><span>Guacamole 1.5.x and 1.6.x</span>
-          <span>One file, no rebuild</span><span>WCAG AA text</span><span>SLSA provenance</span>
-          <span>Docker, Kubernetes, OpenShift</span>
+          <span>One file, no rebuild</span><span>WCAG AA text</span><span>Automatic dark mode</span>
+          <span>SLSA provenance</span><span>Docker, Kubernetes, OpenShift</span>
         </div>
       </div>
       <div class="lion-stage an"><span class="lion-emoji" role="img" aria-label="OrangeLion logo">🦁</span></div>
@@ -206,9 +206,9 @@
       <div class="feat">
         <div class="fcard rv"><div class="ic">&#9889;</div><h3>One jar, no rebuild</h3><p>A standard Guacamole CSS extension. Copy one file into the extensions folder and restart. Nothing else changes.</p></div>
         <div class="fcard rv"><div class="ic">&#127912;</div><h3>Whole-portal palette</h3><p>Login, menus, header bars, buttons, connection list, admin settings, and the in-session menu all wear the orange.</p></div>
-        <div class="fcard rv"><div class="ic">&#129409;</div><h3>Lion browser icon</h3><p>Ships a custom favicon and app icon, so the browser tab carries the orange lion instead of the default logo.</p></div>
-        <div class="fcard rv"><div class="ic">&#9855;</div><h3>Accessible by default</h3><p>WCAG AA text contrast, a visible keyboard focus ring, branded visited links, and brand-coloured form controls.</p></div>
-        <div class="fcard rv"><div class="ic">&#127760;</div><h3>Yours to recolour</h3><p>Every colour is a CSS variable at the top of the stylesheet. Change a few values, rebuild, and it is a different brand.</p></div>
+        <div class="fcard rv"><div class="ic">&#127769;</div><h3>Automatic dark mode</h3><p>Follows the OS or browser <code>prefers-color-scheme</code>. A dark palette, tuned to WCAG AA, switches in with no toggle and no extra file.</p></div>
+        <div class="fcard rv"><div class="ic">&#9855;</div><h3>Accessible by default</h3><p>An audited WCAG AA palette (light and dark), a visible keyboard focus ring, branded visited links, and brand-coloured form controls.</p></div>
+        <div class="fcard rv"><div class="ic">&#128295;</div><h3>Configurable build</h3><p>Recolour the whole theme, swap the wordmark or drop in a logo, or build a neutral palette-only variant, all from <code>build.sh</code> options. No CSS editing.</p></div>
         <div class="fcard rv"><div class="ic">&#128273;</div><h3>Signed releases</h3><p>Each release ships a SHA-256 checksum and a SLSA build-provenance attestation, verifiable with the GitHub CLI.</p></div>
       </div>
     </div>
