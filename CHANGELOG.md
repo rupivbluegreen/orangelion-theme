@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+Nothing yet. Planned changes will be listed here before the next release.
+
+## [1.3.0] - 2026-07-02
+
 ### Added
 
 - Build-time configuration. `build.sh` is now a thin wrapper over `tools/build.py` and reads options from environment variables or a `theme.config` file (see `theme.config.example`). `BRAND_COLOR` recolours the whole theme (darker shades, the login-backdrop gradient, and rgba accents are derived automatically), `WORDMARK` changes the login mark, and `OUTPUT` sets the jar path. With no options set, the build reproduces the standard theme (identical rendering; the manifest byte-for-byte and the CSS apart from stripped build-time marker comments). (#1)
@@ -20,6 +24,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 
 - Accessibility fixes so normal-size text meets WCAG AA (4.5:1) and UI/focus meet 3:1. White-on-orange surfaces move from `#FF6200` (3.00:1 with white) to the accessible `#C24E00` (4.79:1): primary buttons, the menu/header bars, and secondary/menu hover states. Primary-button hover uses the new `#A84300` (6.06:1); the input border darkens from `#D9D9D9` (1.41:1) to `#8C8C8C` (3.36:1); menu outline-button borders become solid white (4.79:1 on the darker bar); and disabled-button labels switch to charcoal for legibility. The bright `#FF6200` is kept for the login backdrop, the lion mark, and accent borders. (#6)
+- Refreshed the screenshots (captured on a live Guacamole 1.6.0) and the GitHub Pages landing page to reflect the accessible palette, dark mode, and the configurable build.
 
 ### Removed
 
@@ -79,7 +84,8 @@ Initial public release of OrangeLion, an unofficial Apache Guacamole theme in th
 
 - `guacamoleVersion` set to `*`. Tested on Guacamole 1.5.5 and 1.6.0.
 
-[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.2.0...HEAD
+[Unreleased]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.3.0...HEAD
+[1.3.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.2.0...v1.3.0
 [1.2.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.1.0...v1.2.0
 [1.1.0]: https://github.com/rupivbluegreen/orangelion-theme/compare/v1.0.0...v1.1.0
 [1.0.0]: https://github.com/rupivbluegreen/orangelion-theme/releases/tag/v1.0.0
