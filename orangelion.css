@@ -185,6 +185,22 @@ button:hover {
     color: var(--brand-orange-darker) !important;
 }
 
+/* Settings section tabs (Active Sessions / History / Users / Groups /
+   Connections / Preferences). The base theme only gives them a pale khaki
+   hover (`background-color:#cda`); replace it with an on-brand orange tint so
+   the hover reads clearly. The current (selected) tab keeps an orange label. */
+.page-tabs .page-list li a[href]:hover,
+.section-tabs li a:hover {
+    background-color: rgba(255, 98, 0, .12) !important;
+    color: var(--brand-orange-darker) !important;
+    cursor: pointer !important;
+}
+
+.page-tabs .page-list li a[href].current,
+.section-tabs li a.current {
+    color: var(--brand-orange-darker) !important;
+}
+
 /* ----------------------------------------------- Connection list / home -- */
 
 .all-connections,
@@ -455,6 +471,21 @@ input[type=range] {
     #guac-menu button:hover {
         background: var(--brand-white) !important;
         color: #C24E00 !important;
+    }
+
+    /* Settings section tabs: replace the base pale-khaki hover with a
+       translucent orange over the dark surface, so the hover is visible and
+       the light-orange tab label stays legible on it. */
+    .page-tabs .page-list li a[href]:hover,
+    .section-tabs li a:hover {
+        background-color: rgba(255, 138, 61, .20) !important;
+        color: var(--brand-orange-darker) !important;
+        cursor: pointer !important;
+    }
+
+    .page-tabs .page-list li a[href].current,
+    .section-tabs li a.current {
+        color: var(--brand-orange-darker) !important;
     }
 
     /* --------------------------------------------- Connection list / home - */
