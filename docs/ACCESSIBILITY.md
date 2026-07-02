@@ -68,6 +68,35 @@ login backdrop gradient, and on the lion mark to keep the brand identity.
 Disabled/inactive controls are excluded from WCAG SC 1.4.3 and 1.4.11. The label
 was switched from white to charcoal anyway, purely for legibility.
 
+## Dark theme (`prefers-color-scheme: dark`)
+
+The dark variant re-tunes the palette for dark surfaces. Same targets: text
+4.5:1, UI/borders/focus 3:1. All pairs pass.
+
+| Pair | Foreground | Background | Ratio | Result |
+| --- | --- | --- | --- | --- |
+| Body / connection text | `#E6E6E6` | `#1A1A1A` | 13.94:1 | PASS |
+| Links | `#FFA366` | `#1A1A1A` | 8.85:1 | PASS |
+| Card / notification text | `#E6E6E6` | `#242424` | 12.44:1 | PASS |
+| Muted labels, field headers | `#A8A8A8` | `#242424` | 6.53:1 | PASS |
+| Input text | `#E6E6E6` | `#303030` | 10.57:1 | PASS |
+| Primary button label | `#1A1A1A` | `#FF8A3D` | 7.42:1 | PASS |
+| Primary hover label | `#1A1A1A` | `#FF9E52` | 8.51:1 | PASS |
+| Secondary button label | `#FFA366` | `#242424` | 7.90:1 | PASS |
+| Menu / header bar text | `#FFFFFF` | `#C24E00` | 4.79:1 | PASS |
+| Menu hover label | `#C24E00` | `#FFFFFF` | 4.79:1 | PASS |
+| Input resting border | `#7A7A7A` | `#303030` | 3.07:1 | PASS |
+| Input focus border | `#FFA366` | `#303030` | 6.71:1 | PASS |
+| Focus ring | `#FFA366` | `#1A1A1A` | 8.85:1 | PASS |
+| Menu focus ring | `#FFFFFF` | `#C24E00` | 4.79:1 | PASS |
+| Secondary / notification accent | `#FF8A3D` | `#242424` | 6.62:1 | PASS |
+| Disabled label *(exempt)* | `#8F8F8F` | `#3A3A3A` | 3.52:1 | PASS |
+
+White-on-bright-orange cannot reach 4.5:1, so dark mode splits it the same way
+the light theme does: button fills use dark text on bright orange (7.4:1+), while
+the menu bar keeps white text and deepens to `#C24E00` (4.79:1). A custom
+`BRAND_COLOR` recolours the light theme only; the dark block keeps this palette.
+
 ## Custom brand colours
 
 Recolouring the theme with `BRAND_COLOR` (see

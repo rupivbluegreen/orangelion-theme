@@ -143,6 +143,19 @@ To ship a *different* name per language, copy the example locale files
 `APP.NAME`, then run `./build.sh` (without `APP_NAME`). The build packs every
 `translations/<locale>.json` it finds and lists them in the manifest.
 
+### Dark mode (automatic)
+
+OrangeLion ships a dark variant that turns on by itself when the operating system
+or browser is set to a dark colour scheme (a `@media (prefers-color-scheme: dark)`
+block in `orangelion.css`) — there is no toggle to flip. It uses dark page and
+card backgrounds, light text, and orange shades tuned for dark surfaces, all
+meeting WCAG AA (see [docs/ACCESSIBILITY.md](docs/ACCESSIBILITY.md#dark-theme-prefers-color-scheme-dark)).
+
+To preview it: switch your OS appearance to Dark and reload, or use your
+browser's dev tools (Chromium: Rendering panel → *Emulate CSS media feature
+prefers-color-scheme: dark*). A custom `BRAND_COLOR` recolours the light theme
+only; edit the dark `@media` block if you want to recolour dark mode too.
+
 ### Editing the CSS directly
 
 You can still hand-edit `orangelion.css` — the colours are CSS variables in the

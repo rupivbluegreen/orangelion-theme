@@ -67,6 +67,7 @@ MIME = {
 
 MARKER_START = "/* @orangelion:branding-start */"
 MARKER_END = "/* @orangelion:branding-end */"
+MARKER_DARK = "/* @orangelion:darkmode */"
 
 LOGO_CSS = """
 /* Configured logo image (build option: LOGO). Overrides the login mark. */
@@ -165,6 +166,27 @@ def css_escape(text):
     return text.replace("\\", "\\\\").replace('"', '\\"')
 
 
+def _recolour(css, prim, dark, darker):
+    """Apply the palette substitutions to a chunk of CSS (the light theme)."""
+    css = re.sub(r"(--brand-orange:\s*)#[0-9A-Fa-f]{3,8}(;)",
+                 lambda m: m.group(1) + prim + m.group(2), css)
+    css = re.sub(r"(--brand-orange-dark:\s*)#[0-9A-Fa-f]{3,8}(;)",
+                 lambda m: m.group(1) + dark + m.group(2), css)
+    css = re.sub(r"(--brand-orange-darker:\s*)#[0-9A-Fa-f]{3,8}(;)",
+                 lambda m: m.group(1) + darker + m.group(2), css)
+    # The deep hover shade has no env knob; derive it from the primary.
+    css = re.sub(r"(--brand-orange-deep:\s*)#[0-9A-Fa-f]{3,8}(;)",
+                 lambda m: m.group(1) + derive("#A84300", prim) + m.group(2), css)
+    # Literal accents not behind the variables.
+    css = re.sub(r"#FF6200\b", prim, css, flags=re.IGNORECASE)
+    r, g, b = hex_to_rgb(prim)
+    css = re.sub(r"rgba\(\s*255\s*,\s*98\s*,\s*0\s*,",
+                 "rgba({}, {}, {},".format(r, g, b), css)
+    for orig in GRADIENT_TINTS + DISABLED_TINTS:
+        css = re.sub(re.escape(orig), derive(orig, prim), css, flags=re.IGNORECASE)
+    return css
+
+
 def transform_css(root, cfg):
     """Return (css_text, logo_asset) where logo_asset is (src_path, arcname) or
     None. With no overrides css_text equals the committed CSS byte-for-byte."""
@@ -190,25 +212,13 @@ def transform_css(root, cfg):
         darker = (cfg["BRAND_COLOR_DARKER"]
                   if given["BRAND_COLOR_DARKER"] != default["BRAND_COLOR_DARKER"]
                   else derive(DEFAULTS["BRAND_COLOR_DARKER"], prim))
+        # Recolour only the light theme; the dark-mode block after the marker is
+        # tuned for dark surfaces, so it is left as-is.
+        head, sep, tail = css.partition(MARKER_DARK)
+        css = _recolour(head, prim, dark, darker) + sep + tail
 
-        css = re.sub(r"(--brand-orange:\s*)#[0-9A-Fa-f]{3,8}(;)",
-                     lambda m: m.group(1) + prim + m.group(2), css)
-        css = re.sub(r"(--brand-orange-dark:\s*)#[0-9A-Fa-f]{3,8}(;)",
-                     lambda m: m.group(1) + dark + m.group(2), css)
-        css = re.sub(r"(--brand-orange-darker:\s*)#[0-9A-Fa-f]{3,8}(;)",
-                     lambda m: m.group(1) + darker + m.group(2), css)
-        # The deep hover shade has no env knob; derive it from the primary.
-        deep = derive("#A84300", prim)
-        css = re.sub(r"(--brand-orange-deep:\s*)#[0-9A-Fa-f]{3,8}(;)",
-                     lambda m: m.group(1) + deep + m.group(2), css)
-
-        # Literal accents not behind the variables.
-        css = re.sub(r"#FF6200\b", prim, css, flags=re.IGNORECASE)
-        r, g, b = hex_to_rgb(prim)
-        css = re.sub(r"rgba\(\s*255\s*,\s*98\s*,\s*0\s*,",
-                     "rgba({}, {}, {},".format(r, g, b), css)
-        for orig in GRADIENT_TINTS + DISABLED_TINTS:
-            css = re.sub(re.escape(orig), derive(orig, prim), css, flags=re.IGNORECASE)
+    # The dark-mode marker is a build-time comment; strip it from every jar.
+    css = re.sub(r"[ \t]*" + re.escape(MARKER_DARK) + r"\n?", "", css)
 
     logo_asset = None
     if cfg["LOGO"] and not neutral:

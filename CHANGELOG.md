@@ -13,7 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Neutral, theme-only build variant. `VARIANT=neutral ./build.sh` emits `dist/guacamole-theme-orangelion-neutral.jar` with just the colour palette — no login mark, product-name override, or bundled icons — so Guacamole keeps its own logo and product name. (#9)
 - Optional logo image. `LOGO=path/to/logo.svg ./build.sh` packs an SVG/PNG into the jar, exposes it as a manifest resource, and shows it on the login card in place of the wordmark. (#2)
 - Multi-language product name. `APP_NAME` is written into an `APP.NAME` override for every locale in `LOCALES` (default `en`); example locale files added for Dutch and German (`translations/nl.json.example`, `translations/de.json.example`). (#8)
-- WCAG contrast audit documented in `docs/ACCESSIBILITY.md`, with the measured ratio and pass/fail for every foreground/background pair in the theme. (#6)
+- Automatic dark-mode variant via a `@media (prefers-color-scheme: dark)` block: dark page and card backgrounds, light text, and orange shades tuned for dark surfaces, all meeting WCAG AA. A custom `BRAND_COLOR` recolours the light theme only. (#3)
+- WCAG contrast audit documented in `docs/ACCESSIBILITY.md`, with the measured ratio and pass/fail for every foreground/background pair in both the light and dark themes. (#6)
 
 ### Changed
 

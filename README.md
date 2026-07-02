@@ -49,7 +49,9 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 - Themed connection list and admin settings pages (Users, Groups, and more).
 - Single-file, drop-in extension: just copy one `.jar`.
 - No web-app rebuild and no source changes to Guacamole.
-- Configurable through CSS variables at the top of the stylesheet.
+- Configurable through build options or the CSS variables at the top of the stylesheet.
+- Automatic dark mode: follows the OS/browser `prefers-color-scheme`, with a dark palette tuned to WCAG AA.
+- Optional theme-only (neutral) build that keeps Guacamole's own logo and product name.
 - Optional product-name rename on the login page via a translation override.
 - Custom browser-tab favicon and app icon (an orange lion mark).
 - Accessible by default: [WCAG AA contrast](docs/ACCESSIBILITY.md) across text, borders, and focus indicators, a visible keyboard focus ring, and brand-coloured form controls.
@@ -130,6 +132,9 @@ No. OrangeLion is unofficial, community-maintained, and unaffiliated with the Ap
 
 **Does it change functionality or only appearance?**
 Only appearance. It is CSS-only and changes no behaviour.
+
+**Does it support dark mode?**
+Yes. A dark variant activates automatically when your OS or browser is set to a dark colour scheme (`prefers-color-scheme: dark`); no toggle needed.
 
 **Will it conflict with LDAP, database, SAML, or other extensions?**
 No. It is a CSS-only extension and does not touch authentication or other extension logic.

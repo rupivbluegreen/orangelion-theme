@@ -267,3 +267,261 @@ input[type=radio],
 input[type=range] {
     accent-color: var(--brand-orange) !important;
 }
+
+/* @orangelion:darkmode */
+/* ============================================================================
+ * OrangeLion — Dark Mode variant.
+ *
+ * Activates automatically when the OS/browser is set to a dark colour scheme
+ * (prefers-color-scheme: dark). It re-tunes the SAME selectors and CSS
+ * variables the light theme uses, keeping the same !important layering so it
+ * beats the bundled Guacamole styles.
+ *
+ * Strategy:
+ *   - Redefine the brand variables for dark surfaces in :root (this flips every
+ *     var()-driven rule: body text, links, connection text, field labels, ...).
+ *   - --brand-white is DELIBERATELY left white: it is the text colour on orange
+ *     fills (buttons, menu bar), so the card/input backgrounds that also used it
+ *     are re-declared explicitly with dark values instead.
+ *   - Orange is re-tuned brighter for text/accents so text-on-dark clears
+ *     4.5:1; the orange menu bar is deepened so white text clears 4.5:1, while
+ *     bright-orange button fills switch to dark text for high contrast.
+ *
+ * A custom BRAND_COLOR (build option) recolours the light theme only; this
+ * dark block keeps its tuned palette. See docs/ACCESSIBILITY.md for ratios.
+ * ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+
+    /* -------------------------------------------------- Dark brand tokens -- */
+    :root {
+        --brand-orange:        #FF8A3D; /* bright fill / accent / border        */
+        --brand-orange-dark:   #FF9E52; /* brighter hover fill                  */
+        --brand-orange-darker: #FFA366; /* brightest: text / links / focus ring */
+        --brand-charcoal:      #E6E6E6; /* was dark text -> now light text      */
+        --brand-grey:          #A8A8A8; /* muted labels on dark                 */
+        --brand-border:        #7A7A7A; /* input borders (>=3:1 on dark)        */
+        /* --brand-white stays #FFFFFF: it is the text colour on orange fills.  */
+        --brand-page:          #1A1A1A; /* page / connection-list background    */
+    }
+
+    /* --------------------------------------------------------------- Base -- */
+    html,
+    body {
+        background: var(--brand-page) !important;
+        color: var(--brand-charcoal) !important;
+    }
+
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:active {
+        color: var(--brand-orange-darker) !important;
+    }
+
+    /* -------------------------------------------------------------- Login -- */
+
+    /* Keep the orange login backdrop gradient (deepened for dark mode). */
+    .login-ui {
+        background: linear-gradient(160deg, #C24E00 0%, #E15700 55%, #FF7A2E 100%) !important;
+    }
+
+    /* White card -> dark card. */
+    .login-ui .login-dialog {
+        background: #242424 !important;
+        color: var(--brand-charcoal) !important;
+        border-radius: 10px !important;
+        box-shadow: 0 12px 40px rgba(0, 0, 0, .55) !important;
+        padding: 1.75em 1.5em !important;
+        border-top: 6px solid var(--brand-orange) !important;
+    }
+
+    .login-ui .login-dialog .logo::after {
+        color: var(--brand-orange) !important;
+    }
+
+    .login-ui .login-dialog .version .app-name,
+    .login-ui .login-dialog .version .version-number,
+    .login-ui .login-dialog h1 {
+        color: var(--brand-grey) !important;
+        text-shadow: none !important;
+    }
+
+    /* Input fields: dark fill, light text, grey border -> bright orange focus. */
+    .login-ui .login-fields .labeled-field input,
+    .login-ui .login-dialog .login-fields input {
+        background: #303030 !important;
+        color: var(--brand-charcoal) !important;
+        border: 1px solid var(--brand-border) !important;
+        border-radius: 4px !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
+    }
+
+    .login-ui .login-fields .labeled-field input:focus {
+        border-color: var(--brand-orange-darker) !important;
+        box-shadow: 0 0 0 2px rgba(255, 163, 102, .35) !important;
+    }
+
+    .login-ui .login-fields .labeled-field .field-header {
+        color: var(--brand-grey) !important;
+    }
+
+    /* ------------------------------------------------------------ Buttons -- */
+
+    /* Primary buttons -> bright orange fill with DARK text (white-on-bright-
+       orange cannot reach 4.5:1; dark text clears it easily). */
+    input[type=submit],
+    button.primary,
+    .button.primary {
+        background: var(--brand-orange) !important;
+        background-color: var(--brand-orange) !important;
+        color: #1A1A1A !important;
+        border: 1px solid #E0761F !important;
+        text-shadow: none !important;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, .5) !important;
+        font-weight: 700 !important;
+    }
+
+    input[type=submit]:hover,
+    button.primary:hover,
+    .button.primary:hover {
+        background: var(--brand-orange-dark) !important;
+        background-color: var(--brand-orange-dark) !important;
+        border-color: var(--brand-orange-darker) !important;
+        color: #1A1A1A !important;
+    }
+
+    /* Secondary buttons -> dark fill, bright-orange text and border. */
+    .button,
+    button {
+        background: #242424 !important;
+        color: var(--brand-orange-darker) !important;
+        border: 2px solid var(--brand-orange) !important;
+        text-shadow: none !important;
+        box-shadow: none !important;
+    }
+
+    .button:hover,
+    button:hover {
+        background: var(--brand-orange) !important;
+        color: #1A1A1A !important;
+    }
+
+    /* ---------------------------------------------- Post-login menu bar --- */
+
+    /* Orange header preserved but deepened so white text clears 4.5:1. */
+    .menu,
+    #guac-menu,
+    .menu .header,
+    .header {
+        background: #C24E00 !important;
+        color: var(--brand-white) !important;
+        text-shadow: none !important;
+    }
+
+    .menu .header h2,
+    .header h2,
+    #guac-menu .header h2 {
+        color: var(--brand-white) !important;
+    }
+
+    /* Menu buttons: white outline on the deep-orange bar. */
+    .menu .button,
+    .menu button,
+    #guac-menu .button,
+    #guac-menu button {
+        background: transparent !important;
+        color: var(--brand-white) !important;
+        border: 2px solid var(--brand-white) !important;
+    }
+
+    /* Hover -> white chip; text uses the deep orange (bright orange on white
+       fails 4.5:1). */
+    .menu .button:hover,
+    .menu button:hover,
+    #guac-menu .button:hover,
+    #guac-menu button:hover {
+        background: var(--brand-white) !important;
+        color: #C24E00 !important;
+    }
+
+    /* --------------------------------------------- Connection list / home - */
+
+    .all-connections,
+    .connection-list,
+    .home {
+        background: var(--brand-page) !important;
+        color: var(--brand-charcoal) !important;
+    }
+
+    .connection,
+    .connection-group,
+    a.home-connection,
+    .home-connection-group {
+        color: var(--brand-charcoal) !important;
+    }
+
+    .connection:hover,
+    a.home-connection:hover,
+    .connection-group .caption:hover {
+        background: rgba(255, 138, 61, .20) !important;
+    }
+
+    .connection a,
+    .connection a:hover,
+    .connection a:visited {
+        color: var(--brand-charcoal) !important;
+    }
+
+    /* Notifications / dialogs -> dark surface, light text, orange accent. */
+    .notification {
+        background: #242424 !important;
+        color: var(--brand-charcoal) !important;
+        border-top: 4px solid var(--brand-orange) !important;
+    }
+
+    /* ------------------------------------------------------ Accessibility - */
+
+    /* Keyboard focus ring: bright orange on dark surfaces. */
+    a:focus-visible,
+    input:focus-visible,
+    button:focus-visible,
+    .button:focus-visible,
+    .connection:focus-visible,
+    a.home-connection:focus-visible {
+        outline: 3px solid var(--brand-orange-darker) !important;
+        outline-offset: 2px !important;
+    }
+
+    /* White focus ring on the orange menu bar. */
+    .menu button:focus-visible,
+    .menu .button:focus-visible,
+    #guac-menu button:focus-visible,
+    #guac-menu .button:focus-visible {
+        outline: 3px solid var(--brand-white) !important;
+        outline-offset: 2px !important;
+    }
+
+    /* Disabled buttons: muted dark, clearly non-interactive. */
+    input[type=submit]:disabled,
+    button:disabled,
+    button.primary:disabled,
+    .button:disabled,
+    .button.primary:disabled {
+        background: #3A3A3A !important;
+        background-color: #3A3A3A !important;
+        border-color: #4A4A4A !important;
+        color: #8F8F8F !important;
+        box-shadow: none !important;
+        cursor: not-allowed !important;
+    }
+
+    /* Native controls keep the (brighter) brand accent. */
+    input[type=checkbox],
+    input[type=radio],
+    input[type=range] {
+        accent-color: var(--brand-orange) !important;
+    }
+}
