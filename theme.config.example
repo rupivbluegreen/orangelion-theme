@@ -1,0 +1,45 @@
+# OrangeLion build configuration (optional).
+#
+# Copy this file to `theme.config` and uncomment what you need, or set the same
+# names as environment variables (environment variables win). With everything
+# left at its default, `./build.sh` reproduces the standard branded OrangeLion
+# theme byte for byte.
+#
+# `theme.config` is read as plain KEY=VALUE lines; it is never executed.
+
+# --- Variant -----------------------------------------------------------------
+# branded (default) = orange palette + the lion login mark + bundled icons.
+# neutral           = palette only. Drops the login mark, the product-name
+#                     override, and the bundled icons, so Guacamole keeps its
+#                     own logo and product name. Output defaults to
+#                     dist/guacamole-theme-orangelion-neutral.jar.
+# VARIANT=branded
+
+# --- Brand palette -----------------------------------------------------------
+# Set BRAND_COLOR alone to recolour the whole theme; the darker shades are
+# derived from it automatically. Override the shades explicitly if you want to.
+# If you pick a light brand colour, set BRAND_COLOR_DARKER to a shade that meets
+# WCAG AA (>= 4.5:1) on white for link and outline-button text.
+# BRAND_COLOR=#FF6200
+# BRAND_COLOR_DARK=#E15700
+# BRAND_COLOR_DARKER=#C24E00
+
+# --- Login mark --------------------------------------------------------------
+# Any text or emoji to show on the white login card instead of the lion emoji.
+# WORDMARK=OrangeLion
+
+# Optional logo image (SVG or PNG) shown instead of the wordmark. The path is
+# relative to the repo root (or absolute). When set, the image is packed into
+# the jar, exposed as a manifest resource, and the wordmark text is hidden.
+# Use only artwork you have the right to use.
+# LOGO=images/my-logo.svg
+
+# --- Product name (branded builds only) --------------------------------------
+# Rename the product shown on the login page and browser tab. The name is
+# written into an APP.NAME translation override for each locale in LOCALES.
+# APP_NAME=OrangeLion Service
+# LOCALES=en nl de
+
+# --- Output ------------------------------------------------------------------
+# Output jar path (default: dist/guacamole-theme-orangelion[-neutral].jar).
+# OUTPUT=dist/guacamole-theme-orangelion.jar

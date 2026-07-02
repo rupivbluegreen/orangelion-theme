@@ -50,6 +50,7 @@ a:active {
     border-top: 6px solid var(--brand-orange) !important;
 }
 
+/* @orangelion:branding-start */
 /* Replace the Guacamole logo mark with a lion emoji mark. */
 .login-ui .login-dialog .logo {
     background-image: none !important;
@@ -69,6 +70,7 @@ a:active {
     letter-spacing: .01em;
     color: var(--brand-orange);
 }
+/* @orangelion:branding-end */
 
 .login-ui .login-dialog .version .app-name,
 .login-ui .login-dialog .version .version-number,
@@ -216,10 +218,12 @@ a.home-connection:hover,
 
 /* ----------------------------------------------------- Accessibility ----- */
 
+/* @orangelion:branding-start */
 /* Hide any future logo image so the text wordmark stays the login mark. */
 .login-ui .login-dialog .logo img {
     display: none !important;
 }
+/* @orangelion:branding-end */
 
 /* Visible keyboard focus ring on interactive elements (WCAG 2.4.7). */
 a:focus-visible,

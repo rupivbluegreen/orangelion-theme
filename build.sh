@@ -1,24 +1,23 @@
 #!/usr/bin/env bash
 # Package OrangeLion into a Guacamole extension jar
 # (dist/guacamole-theme-orangelion.jar).
-# A .jar is a .zip; the manifest + CSS are packed at the archive root.
-# Re-run after editing the manifest or CSS.
+#
+# A .jar is a .zip; the manifest + CSS (+ icons and any assets) are packed at
+# the archive root. Re-run after editing the manifest, CSS, or configuration.
+#
+# With no configuration this reproduces the standard branded theme byte for
+# byte. Configure the build with environment variables or a theme.config file
+# (see theme.config.example). Examples:
+#
+#   ./build.sh                                   # standard branded theme
+#   VARIANT=neutral ./build.sh                   # palette only, no branding
+#   BRAND_COLOR=#1565C0 ./build.sh               # recolour the whole theme
+#   WORDMARK=Acme ./build.sh                      # custom login wordmark
+#   LOGO=images/logo.svg ./build.sh              # logo image instead of the mark
+#   APP_NAME="Acme Remote" LOCALES="en nl de" ./build.sh
+#
+# The build itself only requires python3; the logic lives in tools/build.py.
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
-jar="$here/dist/guacamole-theme-orangelion.jar"
-mkdir -p "$here/dist"
-
-python3 - "$here" "$jar" <<'PY'
-import sys, zipfile, os
-src, jar = sys.argv[1], sys.argv[2]
-files = ["guac-manifest.json", "orangelion.css",
-         "images/lion-64.png", "images/lion-144.png"]
-# Include an optional translation override only if the real file exists
-if os.path.exists(os.path.join(src, "translations", "en.json")):
-    files.append("translations/en.json")
-with zipfile.ZipFile(jar, "w", zipfile.ZIP_DEFLATED) as z:
-    for name in files:
-        z.write(os.path.join(src, name), name)
-print("built", jar, "with", files)
-PY
+exec python3 "$here/tools/build.py" "$here"

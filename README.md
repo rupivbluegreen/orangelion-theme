@@ -92,11 +92,16 @@ For full step-by-step instructions, customisation options, and uninstall steps, 
 
 ## Customize
 
-- Palette: edit the CSS variables at the top of `orangelion.css` to adjust colours (for example the orange value) without touching the rest of the stylesheet.
-- Wordmark: change the lion emoji in `orangelion.css` (the `content` value on `.logo::after`) to your own text or emoji, or point `.logo` at a background image.
-- Product name: optionally rename the product shown on the login page by supplying an `APP.NAME` override. See `translations/en.json.example` for the format.
+The quickest way to restyle is with build options — no CSS editing. `build.sh` reads them from environment variables, or from a `theme.config` file (copy `theme.config.example`):
 
-All colours are defined as CSS variables in the `:root` block at the top of `orangelion.css`:
+- Recolour everything: `BRAND_COLOR=#1565C0 ./build.sh` (the darker shades are derived automatically).
+- Custom login mark: `WORDMARK="Acme" ./build.sh`, or a logo image with `LOGO=images/my-logo.svg ./build.sh`.
+- Rename the product on the login page/tab: `APP_NAME="Acme Remote" LOCALES="en nl de" ./build.sh`.
+- Theme-only build with no OrangeLion branding (keeps Guacamole's own logo and name): `VARIANT=neutral ./build.sh`.
+
+See [INSTRUCTIONS.md](INSTRUCTIONS.md#5-customize-with-build-options-recommended) for the full option reference.
+
+You can also hand-edit the CSS variables in the `:root` block at the top of `orangelion.css`:
 
 | Variable | Default | Controls |
 | --- | --- | --- |
@@ -109,7 +114,7 @@ All colours are defined as CSS variables in the `:root` block at the top of `ora
 | `--brand-white` | `#FFFFFF` | Cards |
 | `--brand-page` | `#FFFFFF` | Page background |
 
-Worked example, recolour to blue: set `--brand-orange`, `--brand-orange-dark`, and `--brand-orange-darker` to your blue shades in the `:root` block, then run `./build.sh`.
+Worked example, recolour to blue: run `BRAND_COLOR=#1565C0 ./build.sh`, or set `--brand-orange`, `--brand-orange-dark`, and `--brand-orange-darker` to your blue shades in the `:root` block by hand and rebuild.
 
 After any change, rebuild the jar with `build.sh` (output: `dist/guacamole-theme-orangelion.jar`), then reinstall and hard refresh.
 

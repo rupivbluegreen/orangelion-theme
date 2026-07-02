@@ -42,9 +42,11 @@ If you do not see the log line, the extension was not picked up. Check that the 
 | --- | --- |
 | `guac-manifest.json` | Extension manifest (namespace `orangelion`, name, css entry) |
 | `orangelion.css` | Palette variables and all login, button, menu, and connection-list styling |
-| `build.sh` | Packs the jar into `dist/guacamole-theme-orangelion.jar` |
+| `build.sh` | Entry point that runs `tools/build.py` to pack the jar |
+| `tools/build.py` | Build logic: templating, variants, and packing (`python3` only) |
+| `theme.config.example` | Sample build configuration (colour, wordmark, variant, locales) |
 | `dist/guacamole-theme-orangelion.jar` | Prebuilt extension, ready to drop in |
-| `translations/en.json.example` | Optional `APP.NAME` override to rename the product on the login page |
+| `translations/*.json.example` | Optional `APP.NAME` overrides to rename the product per locale |
 | `INSTRUCTIONS.md` | Detailed install, customise, and uninstall guide |
 | `screenshots/` | Reference images of the themed pages |
 

@@ -75,16 +75,79 @@ restricted-SCC notes and ready-to-adapt manifests, see
 2. Open the login page. It should show the orange background, a white card, and
    the lion emoji mark.
 
-## 5. Customize (optional)
+## 5. Customize with build options (recommended)
 
-All colors are CSS variables at the top of `orangelion.css`:
+You can restyle OrangeLion without editing any CSS. `build.sh` reads options
+from environment variables, or from a `theme.config` file of `KEY=VALUE` lines
+(copy `theme.config.example` to `theme.config`). Environment variables win over
+the file, and with no options set `./build.sh` reproduces the standard theme
+byte for byte.
 
-1. Edit the palette, for example `--brand-orange: #FF6200;`.
-2. Change the login wordmark by editing the `.login-ui .login-dialog .logo::after`
-   rule (the `content` value, currently a lion emoji), or point `.logo` at a real image.
-3. Rename the product on the login page and browser tab: copy
-   `translations/en.json.example` to `translations/en.json`, edit `APP.NAME`,
-   and rebuild. The build script includes that file automatically when present.
+| Option | Default | Effect |
+| --- | --- | --- |
+| `VARIANT` | `branded` | `branded` = palette + lion login mark + icons. `neutral` = palette only (see below). |
+| `BRAND_COLOR` | `#FF6200` | Primary accent. The darker shades are derived from it automatically. |
+| `BRAND_COLOR_DARK` | derived | Hover / darker fill shade. |
+| `BRAND_COLOR_DARKER` | derived | Accessible text orange (links, outline-button labels). |
+| `WORDMARK` | lion emoji | Text or emoji shown on the white login card. |
+| `LOGO` | — | Path to an SVG/PNG shown instead of the wordmark (see below). |
+| `APP_NAME` | — | Product name on the login page / browser tab (branded builds only). |
+| `LOCALES` | `en` | Space-separated locales that `APP_NAME` is written into. |
+| `OUTPUT` | `dist/…jar` | Output jar path. |
+
+Examples:
+
+```bash
+./build.sh                                    # standard branded theme
+BRAND_COLOR=#1565C0 ./build.sh                # recolour everything to blue
+WORDMARK="Acme Remote" ./build.sh             # custom login wordmark
+APP_NAME="Acme Remote" LOCALES="en nl de" ./build.sh
+```
+
+### Theme-only (neutral) build
+
+`VARIANT=neutral ./build.sh` produces `dist/guacamole-theme-orangelion-neutral.jar`:
+just the colour palette, with **no** OrangeLion login mark, product-name
+override, or bundled icons, so Guacamole keeps its own logo and product name.
+Pick this if you want the restyle but not the branding. (OrangeLion is an
+unofficial, community-maintained theme, unaffiliated with Apache Guacamole,
+either way.)
+
+### Logo image instead of the wordmark
+
+Set `LOGO` to an SVG or PNG to render a real logo, centred on the login card, in
+place of the wordmark text/emoji:
+
+```bash
+LOGO=images/my-logo.svg ./build.sh
+```
+
+The image is packed into the jar and exposed as a manifest resource, and the
+wordmark text is hidden. Use only artwork you have the right to use; do not ship
+trademarked logos.
+
+### More languages for the product name
+
+`APP_NAME` sets the product name shown on the login page and browser tab. By
+default it is written for English only; list more locales in `LOCALES` (using
+the Guacamole locale codes, for example `en`, `nl`, `de`, `fr`) so users whose
+browser is set to another language see the override too:
+
+```bash
+APP_NAME="Acme Remote" LOCALES="en nl de fr" ./build.sh
+```
+
+To ship a *different* name per language, copy the example locale files
+(`translations/en.json.example`, `translations/nl.json.example`,
+`translations/de.json.example`) to `translations/<locale>.json`, edit each
+`APP.NAME`, then run `./build.sh` (without `APP_NAME`). The build packs every
+`translations/<locale>.json` it finds and lists them in the manifest.
+
+### Editing the CSS directly
+
+You can still hand-edit `orangelion.css` — the colours are CSS variables in the
+`:root` block at the top — then rebuild. Build options are a convenience layer
+over the same stylesheet.
 
 ## 6. Rebuild and reinstall after any change
 

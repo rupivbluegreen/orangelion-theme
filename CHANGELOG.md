@@ -7,7 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-Nothing yet. Planned changes will be listed here before the next release.
+### Added
+
+- Build-time configuration. `build.sh` is now a thin wrapper over `tools/build.py` and reads options from environment variables or a `theme.config` file (see `theme.config.example`). `BRAND_COLOR` recolours the whole theme (darker shades, the login-backdrop gradient, and rgba accents are derived automatically), `WORDMARK` changes the login mark, and `OUTPUT` sets the jar path. With no options set, the build reproduces the previous jar byte for byte. (#1)
+- Neutral, theme-only build variant. `VARIANT=neutral ./build.sh` emits `dist/guacamole-theme-orangelion-neutral.jar` with just the colour palette — no login mark, product-name override, or bundled icons — so Guacamole keeps its own logo and product name. (#9)
+- Optional logo image. `LOGO=path/to/logo.svg ./build.sh` packs an SVG/PNG into the jar, exposes it as a manifest resource, and shows it on the login card in place of the wordmark. (#2)
+- Multi-language product name. `APP_NAME` is written into an `APP.NAME` override for every locale in `LOCALES` (default `en`); example locale files added for Dutch and German (`translations/nl.json.example`, `translations/de.json.example`). (#8)
 
 ## [1.2.0] - 2026-07-01
 

@@ -1,0 +1,6 @@
+{
+    "_comment": "Optional German (de) product-name override. Copy this file to translations/de.json (drop the .example), edit APP.NAME, and re-run build.sh; the build packs any translations/<locale>.json it finds and lists it in guac-manifest.json. Or let the build generate it: APP_NAME=\"Your Name\" LOCALES=\"en nl de\" ./build.sh",
+    "APP": {
+        "NAME": "OrangeLion Service"
+    }
+}
