@@ -206,7 +206,11 @@ button:hover {
 .all-connections,
 .connection-list,
 .home {
-    background: var(--brand-page) !important;
+    /* background-color (not the `background` shorthand): the shorthand + !important
+       would reset background-image/size/repeat/position to initial on any element
+       it matches (e.g. the header user-menu Home/Settings links carry .home /
+       .connection-list), blowing up their icons. */
+    background-color: var(--brand-page) !important;
     color: var(--brand-charcoal) !important;
 }
 
@@ -642,7 +646,7 @@ input[type=range]::-ms-fill-upper {
     .all-connections,
     .connection-list,
     .home {
-        background: var(--brand-page) !important;
+        background-color: var(--brand-page) !important;
         color: var(--brand-charcoal) !important;
     }
 
