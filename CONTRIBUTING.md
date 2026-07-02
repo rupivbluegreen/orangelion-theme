@@ -22,7 +22,7 @@ This produces `dist/guacamole-theme-orangelion.jar`. The script only requires `p
 
 ## Testing locally
 
-1. Build the jar (see above), or use the prebuilt `dist/guacamole-theme-orangelion.jar`.
+1. Build the jar (see above); `./build.sh` writes it to `dist/`.
 2. Install it in one of two ways:
    - Copy the jar into your `GUACAMOLE_HOME/extensions/` directory.
    - For the official Docker image, mount a folder that contains `extensions/guacamole-theme-orangelion.jar` and set `GUACAMOLE_HOME` to that folder.
@@ -45,7 +45,7 @@ If you do not see the log line, the extension was not picked up. Check that the 
 | `build.sh` | Entry point that runs `tools/build.py` to pack the jar |
 | `tools/build.py` | Build logic: templating, variants, and packing (`python3` only) |
 | `theme.config.example` | Sample build configuration (colour, wordmark, variant, locales) |
-| `dist/guacamole-theme-orangelion.jar` | Prebuilt extension, ready to drop in |
+| `dist/` | Build output (git-ignored); `./build.sh` writes the jar here |
 | `translations/*.json.example` | Optional `APP.NAME` overrides to rename the product per locale |
 | `INSTRUCTIONS.md` | Detailed install, customise, and uninstall guide |
 | `screenshots/` | Reference images of the themed pages |

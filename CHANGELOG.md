@@ -21,6 +21,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Accessibility fixes so normal-size text meets WCAG AA (4.5:1) and UI/focus meet 3:1. White-on-orange surfaces move from `#FF6200` (3.00:1 with white) to the accessible `#C24E00` (4.79:1): primary buttons, the menu/header bars, and secondary/menu hover states. Primary-button hover uses the new `#A84300` (6.06:1); the input border darkens from `#D9D9D9` (1.41:1) to `#8C8C8C` (3.36:1); menu outline-button borders become solid white (4.79:1 on the darker bar); and disabled-button labels switch to charcoal for legibility. The bright `#FF6200` is kept for the login backdrop, the lion mark, and accent borders. (#6)
 
+### Removed
+
+- The prebuilt `dist/guacamole-theme-orangelion.jar` is no longer committed and `dist/` is git-ignored. The canonical download is the CI-built asset on each tagged GitHub Release (with a SHA-256 checksum and a build-provenance attestation); build locally with `./build.sh` when working from source. The README documents the semantic-versioning policy. (#5)
+
 ## [1.2.0] - 2026-07-01
 
 ### Added

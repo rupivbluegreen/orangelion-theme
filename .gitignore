@@ -1,4 +1,13 @@
 # local translation override (copy from translations/en.json.example)
 translations/en.json
+# local build config (copy from theme.config.example)
+theme.config
 node_modules/
 package-lock.json
+
+# build output; the jar is published as a GitHub Release asset instead
+dist/
+
+# python bytecode cache from tools/build.py
+__pycache__/
+*.pyc

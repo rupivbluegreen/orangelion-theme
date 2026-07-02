@@ -26,6 +26,7 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 - [Install](#install)
 - [Customize](#customize)
 - [Compatibility](#compatibility)
+- [Versioning](#versioning)
 - [FAQ](#faq)
 - [Roadmap](#roadmap)
 - [Contributing](#contributing)
@@ -58,7 +59,7 @@ OrangeLion is a CSS-only theme extension for Apache Guacamole. It repaints the l
 
 ## Install
 
-Download the latest `guacamole-theme-orangelion.jar` from the [Releases](https://github.com/rupivbluegreen/orangelion-theme/releases) page, or use the prebuilt copy in `dist/` in this repo.
+Download the latest `guacamole-theme-orangelion.jar` from the [Releases](https://github.com/rupivbluegreen/orangelion-theme/releases) page — each release attaches the CI-built jar plus a SHA-256 checksum and a build-provenance attestation — or build it yourself with `./build.sh`.
 
 Quick version:
 
@@ -143,6 +144,10 @@ Guacamole reads `guacamoleVersion` from the manifest as the version the extensio
 2. When that CI job is green, add a row here marked **PASS (CI)**.
 3. Only mark a visual surface **Verified** if it was actually inspected on that version.
 
+## Versioning
+
+OrangeLion follows [Semantic Versioning](https://semver.org/). Each release is tagged `vMAJOR.MINOR.PATCH` and recorded in the [CHANGELOG](CHANGELOG.md). Pushing a version tag triggers CI to build the jar and attach it — with a SHA-256 checksum and a build-provenance attestation — to the matching [GitHub Release](https://github.com/rupivbluegreen/orangelion-theme/releases), which is the canonical download. The built jar is **not** committed to the repository (`dist/` is git-ignored); build it locally with `./build.sh` when working from source.
+
 ## FAQ
 
 **Is this affiliated with Apache Guacamole?**
@@ -168,7 +173,7 @@ It only adds CSS, so risk is limited to appearance.
 
 ## Roadmap
 
-Planned improvements are tracked as [issues](https://github.com/rupivbluegreen/orangelion-theme/issues). Highlights include a configurable brand colour and wordmark, optional SVG logo support, a dark-mode variant, CI-built tagged releases, a WCAG contrast audit, and a documented Guacamole version compatibility matrix. Contributions toward any of these are welcome.
+Recent work has landed a configurable brand colour and wordmark, an optional logo image, a theme-only (neutral) build, multi-language product names, an automatic dark-mode variant, a documented WCAG contrast audit, a Guacamole version compatibility matrix, and CI-built tagged Releases. Further improvements are tracked as [issues](https://github.com/rupivbluegreen/orangelion-theme/issues); contributions are welcome.
 
 ## Contributing
 

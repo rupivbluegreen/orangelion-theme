@@ -7,8 +7,9 @@ Guacamole CSS extension (a `.jar`) that Guacamole loads at startup.
 ## 1. What you need
 
 1. A running Apache Guacamole (version 1.5.x or 1.6.x).
-2. The theme jar: `dist/guacamole-theme-orangelion.jar` from this repo (already prebuilt), or
-   run `./build.sh` to produce it yourself.
+2. The theme jar: download `guacamole-theme-orangelion.jar` from the latest
+   [Release](https://github.com/rupivbluegreen/orangelion-theme/releases), or run
+   `./build.sh` to produce `dist/guacamole-theme-orangelion.jar` yourself.
 3. Write access to the Guacamole extensions directory, or the ability to set
    the `GUACAMOLE_HOME` environment variable if you run the Docker image.
 
