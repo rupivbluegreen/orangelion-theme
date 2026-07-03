@@ -34,6 +34,7 @@ Configuration keys (all optional):
   OUTPUT              output jar path
 """
 
+import argparse
 import colorsys
 import json
 import os
@@ -52,6 +53,25 @@ DEFAULTS = {
     "LOCALES": "en",
     "OUTPUT": "",
 }
+
+VARIANT_CHOICES = ("branded", "neutral", "theme-only", "theme")
+NEUTRAL_VARIANTS = ("neutral", "theme-only", "theme")
+NEUTRAL_IGNORED_KEYS = ("WORDMARK", "LOGO", "APP_NAME", "LOCALES")
+LOCALE_TOKEN = re.compile(r"^[A-Za-z]{2,3}(?:[-_][A-Za-z0-9]{2,8})*$")
+
+OPTION_REFERENCE = """Configuration keys (theme.config or environment):
+  VARIANT             branded (default) or neutral. theme-only/theme are
+                      accepted aliases for neutral.
+  BRAND_COLOR         primary accent hex (default #FF6200)
+  BRAND_COLOR_DARK    hover / darker fill hex (default #E15700, derived
+                      from BRAND_COLOR when only BRAND_COLOR is set)
+  BRAND_COLOR_DARKER  accessible text orange hex (default #C24E00, derived)
+  WORDMARK            login-mark text or emoji (branded builds only)
+  LOGO                SVG/PNG logo path (branded builds only)
+  APP_NAME            product name translation override (branded builds only)
+  LOCALES             space-separated locales for APP_NAME (default "en")
+  OUTPUT              output jar path
+"""
 
 # Literal brand values that live outside the CSS variables and so are recoloured
 # by hand when a custom palette is requested.
@@ -91,6 +111,7 @@ LOGO_CSS = """
 
 def load_config(root):
     cfg = dict(DEFAULTS)
+    provided = set()
     path = os.path.join(root, "theme.config")
     if os.path.exists(path):
         with open(path, encoding="utf-8") as fh:
@@ -103,10 +124,12 @@ def load_config(root):
                 val = val.strip().strip('"').strip("'")
                 if key in cfg:
                     cfg[key] = val
+                    provided.add(key)
     for key in cfg:
         env = os.environ.get(key)
         if env:
             cfg[key] = env
+            provided.add(key)
     # Normalise and validate colour options: empty means "use the default",
     # anything else must be a #RGB / #RRGGBB hex value (this also rejects
     # trailing junk such as an inline comment).
@@ -119,11 +142,40 @@ def load_config(root):
         else:
             sys.exit("build: invalid {} {!r} (expected a hex colour like "
                      "#FF6200)".format(key, cfg[key]))
-    return cfg
+    validate_config(cfg, provided)
+    return cfg, provided
+
+
+def validate_config(cfg, provided):
+    variant = cfg["VARIANT"].strip().lower() or DEFAULTS["VARIANT"]
+    if variant not in VARIANT_CHOICES:
+        sys.exit("build: invalid VARIANT {!r} (expected one of: {})".format(
+            cfg["VARIANT"], ", ".join(VARIANT_CHOICES)))
+    cfg["VARIANT"] = "neutral" if variant in NEUTRAL_VARIANTS else "branded"
+
+    locale_tokens(cfg)
+    if cfg["APP_NAME"] and not cfg["LOCALES"].split():
+        sys.exit("build: LOCALES must include at least one locale when "
+                 "APP_NAME is set")
+
+    if is_neutral(cfg):
+        for key in NEUTRAL_IGNORED_KEYS:
+            if key in provided and cfg[key].strip():
+                print("build: warning: {} is ignored when VARIANT=neutral".format(key),
+                      file=sys.stderr)
 
 
 def is_neutral(cfg):
-    return cfg["VARIANT"].strip().lower() in ("neutral", "theme-only", "theme")
+    return cfg["VARIANT"] == "neutral"
+
+
+def locale_tokens(cfg):
+    tokens = cfg["LOCALES"].split()
+    bad = [loc for loc in tokens if not LOCALE_TOKEN.fullmatch(loc)]
+    if bad:
+        sys.exit("build: invalid LOCALES token {!r} (expected values like "
+                 "en, en-US, or pt_BR)".format(bad[0]))
+    return tokens
 
 
 # --------------------------------------------------------------- colour maths --
@@ -266,7 +318,7 @@ def build_translations(root, cfg):
     if cfg["APP_NAME"]:
         payload = {"APP": {"NAME": cfg["APP_NAME"]}}
         blob = (json.dumps(payload, indent=4, ensure_ascii=False) + "\n").encode("utf-8")
-        for loc in dict.fromkeys(cfg["LOCALES"].split()):
+        for loc in dict.fromkeys(locale_tokens(cfg)):
             arc = "translations/{}.json".format(loc)
             files.append((arc, blob))
             seen.add(arc)
@@ -316,16 +368,28 @@ def build_manifest(root, cfg, translation_arcs, logo_arc):
 
 # ---------------------------------------------------------------------- main --
 
-def main():
-    root = sys.argv[1]
-    cfg = load_config(root)
-    neutral = is_neutral(cfg)
+def parse_args(argv):
+    parser = argparse.ArgumentParser(
+        description="Build the OrangeLion Guacamole theme extension jar.",
+        epilog=OPTION_REFERENCE,
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
+    default_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+    parser.add_argument(
+        "root",
+        nargs="?",
+        default=default_root,
+        help="repository root containing guac-manifest.json and orangelion.css",
+    )
+    parser.add_argument(
+        "--dry-run",
+        action="store_true",
+        help="print resolved config, output path, and archive entries without writing a jar",
+    )
+    return parser.parse_args(argv)
 
-    css_text, logo_asset = transform_css(root, cfg)
-    translations = build_translations(root, cfg)
-    logo_arc = logo_asset[1] if logo_asset else None
-    manifest_text = build_manifest(root, cfg, [t[0] for t in translations], logo_arc)
 
+def resolve_output(root, cfg, neutral):
     out = cfg["OUTPUT"]
     if not out:
         name = ("guacamole-theme-orangelion-neutral.jar" if neutral
@@ -333,26 +397,82 @@ def main():
         out = os.path.join(root, "dist", name)
     if not os.path.isabs(out):
         out = os.path.join(root, out)
+    return out
+
+
+def build_plan(root, cfg):
+    neutral = is_neutral(cfg)
+
+    css_text, logo_asset = transform_css(root, cfg)
+    translations = build_translations(root, cfg)
+    logo_arc = logo_asset[1] if logo_asset else None
+    manifest_text = build_manifest(root, cfg, [t[0] for t in translations], logo_arc)
+
+    out = resolve_output(root, cfg, neutral)
+    packed = ["guac-manifest.json", "orangelion.css"]
+    if not neutral:
+        packed.extend(["images/lion-64.png", "images/lion-144.png"])
+    if logo_asset:
+        packed.append(logo_asset[1])
+    packed.extend(arc for arc, _ in translations)
+
+    return {
+        "root": root,
+        "out": out,
+        "neutral": neutral,
+        "css_text": css_text,
+        "logo_asset": logo_asset,
+        "translations": translations,
+        "manifest_text": manifest_text,
+        "packed": packed,
+    }
+
+
+def print_dry_run(plan, cfg):
+    print("dry-run: no jar written")
+    print("root: {}".format(plan["root"]))
+    print("output: {}".format(plan["out"]))
+    print("resolved config:")
+    for key in DEFAULTS:
+        print("  {}={}".format(key, json.dumps(cfg[key], ensure_ascii=False)))
+    print("archive entries:")
+    for name in plan["packed"]:
+        print("  {}".format(name))
+
+
+def write_archive(plan):
+    root = plan["root"]
+    out = plan["out"]
+    neutral = plan["neutral"]
+    logo_asset = plan["logo_asset"]
+    translations = plan["translations"]
+
     os.makedirs(os.path.dirname(out), exist_ok=True)
 
-    packed = []
     with zipfile.ZipFile(out, "w", zipfile.ZIP_DEFLATED) as z:
-        z.writestr("guac-manifest.json", manifest_text)
-        packed.append("guac-manifest.json")
-        z.writestr("orangelion.css", css_text)
-        packed.append("orangelion.css")
+        z.writestr("guac-manifest.json", plan["manifest_text"])
+        z.writestr("orangelion.css", plan["css_text"])
         if not neutral:
             for img in ("images/lion-64.png", "images/lion-144.png"):
                 z.write(os.path.join(root, img), img)
-                packed.append(img)
         if logo_asset:
             z.write(logo_asset[0], logo_asset[1])
-            packed.append(logo_asset[1])
         for arc, blob in translations:
             z.writestr(arc, blob)
-            packed.append(arc)
 
-    print("built {} [{}] with {}".format(out, cfg["VARIANT"], packed))
+    print("built {} [{}] with {}".format(out, "neutral" if neutral else "branded",
+                                          plan["packed"]))
+
+
+def main(argv=None):
+    args = parse_args(sys.argv[1:] if argv is None else argv)
+    root = os.path.abspath(args.root)
+    cfg, _provided = load_config(root)
+    plan = build_plan(root, cfg)
+    if args.dry_run:
+        print_dry_run(plan, cfg)
+        return
+    write_archive(plan)
 
 
 if __name__ == "__main__":

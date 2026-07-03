@@ -21,4 +21,4 @@
 set -euo pipefail
 
 here="$(cd "$(dirname "$0")" && pwd)"
-exec python3 "$here/tools/build.py" "$here"
+exec python3 "$here/tools/build.py" "$here" "$@"
